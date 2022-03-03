@@ -1,0 +1,31 @@
+# APPENDIX
+
+`r officer::run_pagebreak()`
+
+<!-- BEGIN APPENDIX BELOW -->
+
+## Appendix A
+
+```{r sltable, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, tab.cap="Number of Students and Mean Scientific Literacy Score by Country and PISA Assessment Year"}
+
+load("data/final data/table_figure_data.Rdata")
+
+appendix_a <- summary %>% 
+  rename(Country = country) %>%
+  arrange(Country)
+
+sl_table_data %>%
+  flex %>%
+  autofit() %>%
+  add_header_row(top=T,
+                 values=c("", "", "Students / Scientific Literacy Score"),
+                 colwidths = c(1,1,5)) %>%
+  align(i=1, part="header", align="center") %>%
+  hline(i=seq(3, nrow(sl_table_data), 3)) %>%
+  vline(j=2:7, part="body") %>%
+  footnote(i=which(sl_table_data == "China"), j=1,
+           value=as_paragraph("China refers to Shanghai (2009, 2012); Beijing, Shanghai, Jiangsu, and Guangdong (2015); and Beijing, Shanghai, Jiangsu, and Zhejiang (2018)")) %>%
+  fontsize(size=8, part="footer")
+
+```
+

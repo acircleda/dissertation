@@ -1,0 +1,22 @@
+`r ftext('TABLE OF CONTENTS', titlepage)``r fp_par(text.align = "center")`
+
+<!---BLOCK_TOC--->
+
+
+`r officer::run_pagebreak()`
+
+
+
+`r ftext('LIST OF TABLES', titlepage)``r fp_par(text.align = "center")`
+
+`r officer::block_toc(style = "Table Caption", seq_id=1)`
+
+`r officer::run_pagebreak()`
+
+
+
+`r ftext('LIST OF FIGURES', titlepage)``r fp_par(text.align = "center")`
+
+`r officer::block_toc(style = "Image Caption", seq_id=1)`
+
+`r officer::run_pagebreak()`

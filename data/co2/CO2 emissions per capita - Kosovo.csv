@@ -1,0 +1,10 @@
+Source: IEA IEA Data Services https://www.iea.org/data-and-statistics/data-products
+Documentation: undefined
+This data is subject to the IEA's terms and conditions: https://www.iea.org/terms
+
+,CO2/population,Units
+2000,3,t CO2/capita
+2005,3.89,t CO2/capita
+2010,4.91,t CO2/capita
+2015,4.82,t CO2/capita
+2020,4.98,t CO2/capita

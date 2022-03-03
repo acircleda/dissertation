@@ -1,0 +1,26 @@
+`r ftext('LIST OF ABBREVIATIONS', titlepage)``r fp_par(text.align = "center")`
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+tribble(~Abbreviation, ~Definition,
+        "CO~2~", "carbon dioxide",
+        "CO~2~e", "carbon dioxide equivalent, a measure of greenhouse gases on a common scale (Gohar & Shine, 2007)",
+        "GHG", "green house gases such as CO~2~, CH~4~ (methane), N~2~O (nitrous oxide), and water vapor",
+        "PISA", "Programme for International Student Assessment") %>%
+  
+gsheet::gsheet2tbl(url="https://docs.google.com/spreadsheets/d/1pyWCB7-vhJgXR9O23EiP3lJRvjywUqRDzdfP5O1d-nM/edit#gid=0") %>%
+  flextable() %>%
+  ftExtra::colformat_md() %>%
+  border_remove() %>%
+  set_table_properties(width = 1, layout = "autofit") %>%
+  width(j = ~ Abbreviation, width = .5) %>%
+  width(j = ~ Definition, width = 4) %>%
+  align(align = "left", part = "all") %>%
+  bold(part="header") %>%
+  font(fontname="Times New Roman", part="all")
+
+```
+
+
+`r officer::run_pagebreak()`
