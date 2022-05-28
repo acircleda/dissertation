@@ -53,6 +53,7 @@ waves <- wvs_codebook %>%
 wvs_countries <- read_excel("data/WVS/F00003844-WVS_Time_Series_List_of_Variables_and_equivalences.xlsx", sheet="S003 ISO Codes", skip=2) %>%
   rename(S003 = Code,
          country = Label) %>%
+  slice(-105) %>%
   mutate(S003 = parse_number(S003),
          country = case_when(
            country == "Taiwan ROC" ~ "Taiwan",
@@ -209,8 +210,17 @@ fa_table <- function(x, cut) {
 fa_2 <- psych::fa(fa_data, n.obs = nrow(ivs_data), fm = "ml", nfactors = 4, rotate = "oblimin")
 
 
-fa_table(fa_2, cut = .32) %>%
-  flextable()
+fa_2_table <- fa_table(fa_2, cut = .32) %>%
+  mutate(item = ifelse(item == "C001_rev", "C001_re", item)) %>%
+  select(-c("Uniqueness", "Complexity")) %>%
+  flextable() %>%
+  footnote(i=1, j=1, part="body", ref_symbols = "a",
+           value = as_paragraph(
+             c(' "rev" refers to a variable that has been reverse coded'))) %>%
+  footnote(i=6, j=1, part="body", ref_symbols = "b",
+           value = as_paragraph(
+             c(' "re" refers to a variable that was been recoded')))
+  autofit()
 # high loadings, but only 2 items per factor
 
 # try 1 factor
@@ -219,8 +229,17 @@ fa_3 <- psych::fa(fa_data, n.obs = nrow(ivs_data), fm = "ml", nfactors = 1, rota
                   missing=T)
 
 
-fa_table(fa_3, cut = .32) %>%
-  flextable()
+fa_3_table <- fa_table(fa_3, cut = .32) %>%
+  mutate(item = ifelse(item == "C001_rev", "C001_re", item)) %>%
+  select(-c("Uniqueness", "Complexity")) %>%
+  flextable() %>%
+  footnote(i=1, j=1, part="body", ref_symbols = "a",
+           value = as_paragraph(
+             c(' "rev" refers to a variable that has been reverse coded'))) %>%
+  footnote(i=3, j=1, part="body", ref_symbols = "b",
+           value = as_paragraph(
+             c(' "re" refers to a variable that was been recoded'))) %>%
+  autofit()
 
 # 3 variables that load together: F188_rev, F120_rev, C001_rev
 
@@ -279,3 +298,4 @@ left_right %>% distinct(country, .keep_all = T) %>%
   right_join(all_countries) %>% view()
 
 save(left_right, file="data/final data/left_right.Rdata")
+save(fa_2_table, fa_3_table, file="data/final data/efa_tables.Rdata")

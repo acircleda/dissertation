@@ -1,4 +1,193 @@
-# CHAPTER FOUR RESULTS AND DISCUSSION
+# CHAPTER FOUR: Results
+
+This chapter begins with a detailed account of the model-building process and the interpretation of their results. Before further discussion of the results, the statistical and contextual limitations of their inference are first discussed in order to cast any necessary air of caution over the ensuing discussion. Following, model results are then used to provide insight into this dissertation's research questions. Implications of these findings for future research, educators, and those interested in addressing the climate crisis concludes this chapter.
+
+## Results
+
+### Variable Selection
+
+Before the model building process begins, it is necessary to examine a key requirement of general linear models: multicollinearity. If variables are highly correlated with each other, they may inflate standard errors and could lead to wayward interpretations of results. The variance inflation factor (VIF) is one method of assessing multicollinearity. The VIF estimates the increase in a standard error compared to if it were not correlated with other predictors. Using Darlington and Hayes' [-@darlington2017] example, if predictor x has a VIF of 2.5, the square root of the VIF ($\sqrt{2.5} = 1.58$) indicates standard errors would be *inflated* 1.58 times higher than if the predictor were uncorrelated with other predictors.
+
+To assess multicollinearity, a series of ordinary least squares regression models were estimated with the full, un-imputed data set ( Table \@ref(tab:viftable)). The VIF results of Model 1 indicate several variables with high VIFs: collectivism-individualism (8.00), corruption (5.55), left-right orientation (5.54). Several rules of thumb can be used to determine whether these VIFs should cause alarm, with VIFs below 10 typically considered acceptable. However, given the need to reduce standard error bias as much as possible, especially in the key independent variables of scientific literacy (3.93), it was decided to remove very high VIFs, beginning with removing collectivism-individualism. With this variable removed (Model 2), no change occurred in the corruption index and little occurred within scientific literacy. Model 3 retains collectivism and removes the corruption index. Here, collectivism is still high at 8. Whereas in Model 2 the left-right index was 3.11, in Model 3 it is increased to 5.52. However, scientific literacy between's VIF falls to 2.63, which is good. Model 4 removes both corruption and collectivism, finding that all VIFs have decreased again, in particular scientific literacy between. As suspected, the VIFs reflect what is depicted in Figure \@ref(fig:allcor) - a number of these variables are highly correlated with each other. The multicollinearity analysis allows one to see the impact these high correlations could have on standard errors. It was decided to remove both collectivism-individualism and the corruption index from analyses.
+
+
+As a final multicollinearity check, the region variable is included in Model 5. The inclusion of this model increases all VIFs once again and here large VIFs can be found for particular regions, especially Western Nations and Latin America/Caribbean/Other. As a single region of this variable cannot be removed because that would entail removing all other data associated with countries in that region, it was decided to remove region entirely from further modeling^[Region was tested as covariate and possible level-3 grouping variable, with countries nested within regions. However, in both instances, its inclusion caused model convergence issues, lending further evidence that it is not appropriate for the current models.]. 
+
+
+\newpage
+<!---BLOCK_LANDSCAPE_START--->
+```{r viftable, tab.cap="Variance inflation factors for independent variables."}
+flextable(vif_table) %>%
+  width(j=2:6, width=1, unit="in") %>%
+  fontsize(size=10)
+```
+<!---BLOCK_LANDSCAPE_STOP--->
+
+### Models
+
+<!-- Table of Initial Models 0, 1, 2-->
+
+**Unconditional Model**. Model results for the initial models are presented in Table \@ref(tab:modeltableone). The first model fit was the unconditional model (Model 0), which serves as a baseline model that contains only time and a random intercept for each country. The intraclass correlation (ICC) serves as a measure of the variation of CO~2~ within and between countries after controlling for time [@hoffman2015]. The null model's ICC of .965 indicates most of the variation (97%) of CO~2~ is between countries. Conversely, this also indicates that only about 3% of the variation of CO~2~ can be accounted for by within-country variation in CO~2~ over time. In other words, CO~2~ emissions per capita over the tweleve-year time span of this research do not vary much within each country. 
+
+Turning to the fixed parameter estimates for Model 0, the intercept indicates the average CO~2~ emissions per capita for the 82 countries included was 8.56 tCO~2~ in 2006. The estimate for time, $\gamma = -.397$, suggests that every three years, this estimate decreases by about .40 tCO~2~, and this is statistically significant. In terms of the random effects, $\sigma^2$ represents the within-country variation of CO~2~ per capita over time. $\tau_{00}$ represents the variation in the intercept, which is CO~2~ emissions in 2006. Compared to $\tau_{00}=6.6$, the within-country variation ($\sigma=1.25$) is quite small.
+
+$R^2$ is typically used in linear models to assess the percent of variation in the outcome variable that can be attributed to the predictors. However, $R^2$ does not have the same meaning for models with nested data and random effects. For multilevel models, several different pseudo-$R^2$ measures have been developed [@lahuis2014; @peugh2010; @nakagawa2017]. To explain variance in these models, marginal $R^2_{1}$ is estimated using the `performance` R package [@ludecke2021]. Marginal $R^2$ represents the proportion of variance explained by the fixed effects of the model. A related metric, conditional $R^2$, explains the variance accounted for by both the fixed and random effects. However, as the random effects more or less stay the same for the following models, conditional $R^2$ (which is .97 or higher) does not provide much useful information in the way of model explanatory power. For Model 0, the fixed effect for time explains only .07% of the variance in CO~2~ emissions.
+
+
+**Random Effect of Time**. Model 1 adds a random effect for time, which allows the slope of the effect of time to vary for each country. Because of the addition of a random slope, ICC values should not be calculated [@hoffman2015, p. 164]. Instead, the percentage of variation in CO~2~ emissions attributed to the addition of the random slope for time can be estimated by dividing the variance of time ($(\tau_{11})^2 = 0.27$) by the total variance of the model ($(\tau_{00})^2+ (\tau_{11})^2 + \sigma^2 + (COV_{01}\times2) = 53.78$). The proportion of variance attributed to the random effect only explains .5% of the random effect variance. This suggests rates of CO~2~ change over time across countries are more or less stable, on average. This is not surprising as only a small percentage of variation in CO~2~ per capita was due to within-country differences, as indicated by Model 0. Despite the small explanatory power of the random slopes for time, a likelihood ratio test indicates that Model 1 has a better model fit than Model 0, $\chi^2 (2) = 93.72, p < .001$. The regression coefficient for fixed effect of time ($\gamma=.39$) remains practically unchanged from Model 0. The random effect for the intercept, $\tau_{00}$, has increased to 7.76. Two additional parameters are estimated in this model. $\tau_{11}$ represents the variation in the slope of time. $\rho_{01}$ represents the correlation between the random slope and the intercept, -.95. This correlation indicates that for countries with high levels of CO~2~ per capita in 2006, the effect of time is weaker, meaning their emissions levels decline more slowly compared to countries with lower levels of CO~2~ per capita.
+
+**Non-Linear Effect of Time**. Model 2 adds quadratic fixed and random effects for time to assess whether time is linear. Although visual inspection of CO~2~ per capita over time suggested linear change, Model 2 allows for a formal test via likelihood ratio and model fit statistics (Table \@ref(tab:model2table)). Based on the $\chi^2$, AIC, and BIC values, Model 2 with a quadratic effect for time fits better than Model 1. However, the quadratic fixed effect for time is non-significant. While the likelihood ratio test suggests Model 2 may be a better fit, visual inspection of CO~2~ over time (e.g., Figure \@ref(fig:co2overtime)) still suggests a prominent linear relationship. Diagnostic assessments of homogeneity of variance and normality (Figure \@ref(fig:initialmodeldiag)) suggest that Model 2 does not improve fit enough to justify its further use. For these reasons as well as ease of interpretation and model parsimony, only linear effects are considered and Model 2 is rejected^[Quadratic fixed and random effects were added to Models 3 and 4 as a form of sensitivity analysis. The results of these models do not change the statistical conclusions or interpretations. In addition, model diagnostics did not suggest an improvement in fit over Model 3, the conditional growth model. Thus, keeping the less well-fit model is further justified.].
+
+\newpage
+
+```{r model2table, tab.cap="Fit statistics and likelihood ratio test results for Model 2."}
+model_2_fit_table %>% flextable()
+
+```
+
+\newline
+\newline
+
+```{r initialmodeldiag, fig.cap="Visual diagnostics to assess heterogeneity of variance (top row) and normality of residuals (bottom row) Models 1 and 2.", fig.width=6, fig.height=3}
+
+knitr::include_graphics("figures/model_12_diagnostics.jpg")
+```
+
+
+\newpage
+<!---BLOCK_LANDSCAPE_START--->
+
+```{r modeltableone, tab.cap="Table of results for initial multilevel growth models."}
+model_table_1
+```
+
+<!---BLOCK_LANDSCAPE_STOP--->
+
+
+
+**Conditional Growth Model**. Model 3 adds fixed effects for scientific literacy as separate within- and between- variables. This is a common centering strategy in multilevel models used to separate out the two types of effects. In addition, a random slope for scientific literacy within was also added to assess whether the impact of scientific literacy on CO~2~ emissions over time varies across countries. Unfortunately, this produced a singularity issue, meaning the linear effect of scientific literacy within on CO~2~ was near zero. On a country-by-country basis, the effect of scientific literacy within ranges from -.07 to .01, a range of about .08, which is quite small. For Model 3, this suggests that the impact of scientific literacy within a country on CO~2~ per capita does not vary considerably across countries. This was foreshadowed by the ICC in the unconditional model, suggesting 97% of the variance in CO~2~ is between countries, leaving very little variation within countries. Model 3 was re-estimated without a random effect for scientific literacy, which produced no singularity issues (see Table \@ref(tab:modeltableone)).
+
+This model produced no convergence issues. A likelihood ratio test indicated that the addition of fixed effects for scientific literacy did not significantly improve model fit, $\chi^2(2)=.48, p=.786$. However, as scientific literacy is key to addressing the research questions, these variables are retained. In addition, adding fixed effects for scientific literacy increases the explanatory power of the model from $R^2=.006$ to $R^2=.009$, which, though minute, is a 29% increase. 
+
+According to the results of Model 3, a country with average scientific literacy scores in 2006 had per capita emissions of 6.13 tCO~2~. The results for the estimate of time did not change (-.39). The results for scientific literacy between countries is .01, indicating a fractional increase in emissions over time for every increase in scientific literacy scores above average. Scientific literacy within a country is negative (-.002), suggesting a fractional decrease in emissions over time is associated with higher within-country scores. Both effects are near zero, and neither are statistically significant. Random effects in Model 3 do not differ substantially from Model 1. 
+
+Because Model 3 with a random effect for time is the primary growth model before covariates are added, it is important to fully assess model fit by examining model assumptions, including those of linearity, normality, homogeneity, and influence of outliers. Initial visual inspection suggested possible violations of normality of residuals and homogeneity of variance (i.e., indicating the presence of heteroskedasticity; see Figure \@ref(fig:linmod3) and Figure \@ref(fig:qqmod3)). There are several possible reasons for this, including the non-normal dependent variable (CO~2~ is highly right-skewed), presence of outliers, or model misspecification. Examination of the residuals^[Calculated with the `HLMdiag` R package using the Empirical Bayes method [@loy2014]] can suggest major differences between predicted and observed values. Qatar had the most extreme residuals with some as higher as or more than 6, while the next highest residual was around 3. Further outlier analysis using Cook's d, which quantifies the influence a case has on all others by measuring what occurs when it is deleted [@darlington2017]. Cook's d values also indicated that Qatar had extreme deviations from other values. Whereas all other countries had Cook's distance values of less than .05, Qatar had three of its five values above .10 with one as high as .92. Qatar has the highest CO~2~ emissions per capita, with values ranging from 33 tCO~2~ to 52 tCO~2~, all of which are between 3 to 5 standard deviations above average.
+
+Several additional models were fit, one without Qatar and one with Qatar that included an additional dummy variable to attempt to control for Qatar's influence. In addition, due to the non-normality of the dependent variable, a model was fit with the natural log of CO~2~ per capita as the dependent variable. Inspection of model fit and diagnostics suggested that the model without Qatar had improved normality and homogeneity of variance. The model with the natural log of CO~2~ for the dependent variable had similar normality as other models but much improved homogeneity of variance, as determined by the more random pattern of residuals. Given how atypical Qatar is from other countries in its CO~2~ emissions per capita, and the poor predictability of it in the model, it was decided to remove Qatar from further analyses. Likewise, given the non-normality of CO~2~ and the improvement in fit, a logged version CO~2~ per capita was used.
+
+To allow for cross-model comparison, Model 1 and 2 were re-estimated with Qatar removed and the dependent variable log-transformed (Table \@ref(tab:modeltabletwo)). A one-unit change in a predictor now represents the expected change in the log of CO~2~ emissions. Because this value is difficult to interpret, exponentiated fixed effect coefficients are presented in the columns labeled $\%\Delta$. $\%\Delta$ is calculated as $(exp(\gamma)-1)\times100$. Using this exponentiated value, a one-unit change in a predictor now represents the expected percentage change in CO~2~ emissions. Returning to Model 3, we see that CO~2~ emissions significantly decrease over time, about 3.5% every three years. The effect of scientific literacy within on CO~2~ emissions is near-zero and non-significant. On the other hand, a one-unit increase in scientific literacy between countries is associated with a significant .45% increase in emissions. In other words, countries with higher average scientific literacy scores tend to have higher emissions per capita. Unlike the untransformed Models 1 and 3 (Table \@ref(tab:modeltableone)), Model 3 with the log-transformed dependent variable now fits better, $\chi^2 (2) = 15.003, p < .001$. The addition of the fixed effects for scientific literacy raises the marginal $R^2$ of this model from .003 in Model 1 to .152 in Model 3, suggesting time and scientific literacy can explain about 15% of the total variance in CO~2~ emissions over time.
+
+\newpage
+
+
+```{r linmod3, fig.cap="Residuals plotted against fitted values to assess linearity and heterogeneity of variance for Model 3 and alternative models.", fig.width=6, fig.height=3}
+
+knitr::include_graphics("figures/linearity_model_3.jpg")
+```
+
+\newline
+\newline
+
+```{r qqmod3, fig.cap="QQ plots for Model 3 and alternatives.", fig.width=6, fig.height=3}
+
+knitr::include_graphics("figures/qqmodel_3.jpg")
+```
+
+\newpage
+<!---BLOCK_LANDSCAPE_START--->
+
+```{r modeltabletwo, tab.cap="Table of results for final multilevel growth models."}
+#model_table_2 %>% autofit() %>% fontsize(size=10)
+
+model_table_2
+```
+
+<!---BLOCK_LANDSCAPE_STOP--->
+
+**Conditional Growth Model with Covariates**. Model 4 uses 20 imputed datasets derived from joint modeling, the results of which are pooled following Rubin's rules [@vanbuuren2018]. The model includes all covariates (population, GDP, manufacturing as a percentage of GDP, exports as a percentage of GDP, Gini, left-right orientation, democracy, net enrollment, OECD category) as well as the interaction between scientific literacy (within a country) and OECD category. Like the re-estimated Models 1 and 3, Qatar is not included and the log of CO~2~ emissions is used. To aid in interpretation of the model, all variables that range from 0-1 (manufacturing, exports, Gini, left-right orientation, democracy index, and net enrollment) were rescaled by 100 ($x\times100$). Exponentiated values of fixed effect coefficients for these variables now represent the percentage change in CO~2~ emissions for a 1% increase in the predictor, holding all other predictors constant.
+
+In Model 4, time remains a significant predictor, indicating a decrease in CO~2~ emissions per capita in time, similar to Model 3. Triannually, CO~2~ emissions are expected to decrease around 3.5%. Likewise, scientific literacy between countries remains a significant predictor, with a one-unit increase in scientific literacy above average scientific literacy across countries associated with a .45% increase in CO~2~ emissions, holding all other variables constant. With the interaction between scientific literacy within and OECD country status included in the model, the effect of scientific literacy within countries over time is now a conditional effect that represents scientific literacy for only non-OECD countries. This effect remains non-significant, though its effect rises above zero ($\gamma=.001$).
+
+Nearly all additional covariates in the model are non-significant. Nevertheless, the effects will be interpreted so as to understand what they represent in terms of their potential associations with the CO~2~ per capita. Increases in population, GDP, and manufacturing, are associated with increases in CO~2~, as reflected in previous literature. The model estimates that an increase in population of 10,000,000 is associated with a .19% increase in CO~2~ per capita. For every $10,000 increase in FDP, CO~2~ is associated with an increase of .18%. There is a .35% increase associated with a 1% increase in manufacturing as a percentage of GDP.
+
+Exports see a non-significant .05% decrease in CO~2~ emissions per capita. In contrast to most other variables in the model, the Gini coefficient, representing income inequality, has a significant effect associated with it. The fixed effect indicates that for every one percent *increase* in the Gini coefficient toward greater income inequality, there is a significant 1.7%  *decrease* in CO~2~ emissions. These findings are in line with previous literature [e.g., mcgee2018; @hailemariam2020].
+
+A one-unit increase toward right-wing conservative political ideology among a country's population is associated with a non-significant .09 decrease in emissions. Given the role of political ideology has in affecting beliefs and behavior [@hornsey2018],  this finding would be surprising if it were larger and statistically significant. An increase toward a more democratic government, associated with a decrease of .16% in CO~2~ for a 1% change in the index, does line up with previous literature [@czarnekRightwingIdeologyReduces2021], though the effect is not significant. Being an OECD country with average scientific literacy within scores is related to increased emissions at least 4% higher than non-OECD countries, but this is not significant. Similarly, the interaction between scientific literacy and OECD category is not significant. 
+
+Random effects show no substantial changes from Model 3 to Model 4. Between-country variance of CO~2~ emissions over time remains quite high ($\tau_{00} = .71$) while within-country variance remains low ($\sigma = .069$), consistent with the high ICC indicated in the initial models (Models 0 and 1). The correlation between the random slope and the intercept is lower and more reasonable ($\rho=-.505$) than the non-transformed Model 3 ($\rho=-.95$; see Table \@ref(tab:modeltableone)). However, the interpretation remains the same: for countries with higher CO~2~ per capita, emissions levels decline more slowly compared to countries with lower levels.
+
+
+A likelihood ratio test was conducted using the D3 method, which pools results of separate likelihood ratio tests and is necessary for working with multiply-imputed data [@meng1992]. The results indicated the fit of Model 4 was not significantly different than Model 3. Fit statistics in Table \@ref(tab:modeltabletwo) slightly favor Model 3. Although this is the more parsimonious model, it is also the model without covariates. These covariates are needed to control for additional forces outside time and education that may affect CO~2~. For this reason, Model 4 is the best model of the two. Model 4 also explains more variance than Model 3, though marginally so. About 17% of the variance is explained by the fixed effects, meaning 83% of the variance remains unexplained by fixed effects. This is still the highest of all six models fit. Model diagnostics indicate a well-fitting model with normally distributed residuals and no strong evidence of heteroskedasticity. Diagnostics were checked for individual imputations. Figure \@ref(fig:diagmod4) shows example model diagnostics for the first imputation.
+
+<!---BLOCK_LANDSCAPE_START--->
+
+```{r diagmod4, fig.cap="Multilevel regression diagnostics for Model 4. Figure made using the `performance` R package [@ludecke2021].", fig.height=5.7, fig.width=7.33}
+
+knitr::include_graphics("figures/diagmod4.jpg")
+```
+
+
+<!---BLOCK_LANDSCAPE_STOP--->
+
+
+
+### Male and Female Model Comparisons
+
+Model 4 tested the effect of scientific literacy for all students on CO~2~ emissions per capita, controlling for other variables. Given prior research that showed differential effects of economic, social, and educational factors for males and females, research question three asked if scientific literacy for boys and girls differed in terms of its impact on CO~2~. The models represented in Table \@ref(tab:gendermodels) replace scientific literacy for all students with female and male students, respectively.
+
+Overall, the statistical conclusions that can be drawn from the models are similar, though individual coefficient estimates vary. These models also reflect the same conclusions as Model 4, with the same significant predictors. A coefficient test of equality, which tests whether each variable's effects significantly differ between the models, indicated no significant differences. Thus, Model 4 with all students' scientific literacy scores combined is preferred over separate male and female models.
+
+\newpage
+
+<!---BLOCK_LANDSCAPE_START--->
+
+```{r gendermodels, tab.cap="Models for female and male scientific literacy scores."}
+#model_table_3 %>% autofit()
+model_table_3
+```
+
+<!---BLOCK_LANDSCAPE_STOP--->
+
+## Limitations
+
+As with any research, the present dissertation is not without its limitations. First, the scope of the research, while international, is not comprehensively global. That is, it does not consider every country - only those that have participated in the PISA, and even then, it only includes those participating countries for which CO~2~ data was available. As indicated in Figure \@ref(fig:includedmap), there is still a large swath of the world that is not represented. In particular, major economies such as India and Pakistan are not included nor is almost the entire continent of Africa. These missing areas include rapidly developing economies, shifting carbon footprints, and changing education systems. Not having scientific literacy data for these countries leaves out important information about hundreds of millions of students. Additionally, any inferences that can be made from the statistical analyses of this research pertain to only those countries included. This limits the generalizability of the conclusions. 
+
+For some countries, PISA is not representative of the entire country. For instance, in China, the PISA exam only includes large and comparatively wealthier cities or regions, which skews the PISA scores upwards. This does not give an accurate picture of China because it is biased toward these types of regions while ignoring poorer or more rural areas. Furthermore, as the regions have shifted over time, longitudinal comparisons within China may not be as valid. China is not the only country this has occurred in. For example, in Argentina in 2015, only Buenos Aires was included in the PISA exam. The effect of this selection can easily be seen in Figure \@ref(fig:pisascores), with the 2015 PISA score for Argentina standing out as a potential outlier. 
+
+Such issues can only be ameliorated by utilizing a measure of science education (or climate change education) that is more globally comprehensive. Unfortunately, the PISA exam seems to be the most globally comprehensive source of such a measure [@singer2018]. Thus far, the PISA has not made many inroads into middle- and lower-income nations, especially sub-Saharan Africa. There are a large number of financial, technical, and contextual challenges (social, political, and cultural) that make implementing such an assessment difficult [@lockheed2015]. Beyond the present research, a lack of internationally-comparable educational measurement efforts in Africa means that researchers must draw conclusions about education that ignores such an important part of the world [@rise2019].
+
+The limited number of countries available also limits the statistical power of the present research. In fact, statistical power - the ability to detect an effect if there is indeed an effect - for this study is limited by at least three different data constraints. Firstly, the number of countries participating in the PISA since scientific literacy was introduced is 98. This serves as a baseline number of countries that can be included in this research. Secondly, this research encompasses five assessment cycles carried out from 2006 to 2018. However, not all countries have participated in each of these cycles, which limits the number of longitudinal data points each country can have. In addition, if any country is missing data on the CO~2~ dependent variable for a year, that country-year combination must be removed from the analysis, though this issue is minimized due to comprehensive emissions databases. These restrictions meant only 82 countries could be included. In total, the final analysis has 328 observations spread across 82 countries, with each country having between 1 and 5 time points of data. While most (63%) of the sample participated five times, 30 countries participated in the PISA four or fewer times, with 9 countries only participating once (see Figure \@ref(fig:participation)). For the latter countries, that means the analyses are based on only one time-point. While these countries contribute information to the model for the year of their inclusion, little can be said about these countries and the impact of scientific literacy on CO~2~ emissions over time specifically [@hox2018]. The total of 328 observations spread across 82 groups still presents a limitation to the statistical power of the models. Considering both issues above and barring either finding a new metric or new PISA participants, the only way to improve statistical power is to repeat this analysis after several more assessment cycles have passed. This ensures that the number of data points countries have increased.
+
+While increased length of time examined would certainly improve statistical power of the model, another possible limitation is related to the PISA scores themselves. Recall that in 2015, the PISA shifted their IRT modeling process from a simple Rasch/PCM model to a more complex 2-PL/GPCM model to better account for the sophisticated nature of the test design and items. This suggests that scores prior to 2015 may not be fully compatible with scores estimated from 2015 onward. In other words, if scores prior to 2015 were re-estimated following the 2015 methods, the IRT models may produce slightly different final scores. This means PISA scores may not be completely comparable across years without some adjustment or re-estimation. In terms of the present research's limitations, the possibility of longitudinal scores that are not completely comparable suggests there may be some minor levels of uncertainty in the independent variables, as scores for e.g., 2006 and 2015 may be different if they were scaled the same way. @robitzsch2019 found that original and re-estimated scores often disagreed when examining 2006 and 2009 PISA data, though typically the disagreement was in the magnitude of the difference (e.g. 3 vs 9 points) rather than the direction of the difference (increase vs decrease.)
+
+The PISA does offer a linking error to correct for variability of how items function over time. However, little to no guidance is offered on how to use this metric in complex models. Re-estimation of PISA scientific literacy scores is another way to address this issue. One could fit hybrid IRT models using all scientific literacy data from 2006 onwards. However, even with a close following of the PISA methods and related literature [e.g., @carstensen2013, @robitzsch2019, @robitzsch2020] such an attempt is difficult. One hurdle is computational power, as this analysis constitutes more than 2 million rows of information with around 400 columns of item data and hundreds more if one includes the supplementary data necessary to calculate covariates for the latent regression model. The PISA can take steps to make this easier by publishing re-estimated results following their newest procedure. This PISA 2015 technical report indicates this analysis has already been completed [@oecd2017a]. Furthermore, the estimation can be made more transparent by providing reproducible code needed to estimate models using modern and freely available software (e.g. R) as opposed to arcane packages with limited to no access or support.
+
+A further limitation of the current research pertains to the research design itself. Figure \@ref(fig:allcor) indicated the correlations between all the variables included in the research. The correlation between scientific literacy and CO~2~ per capita was quite low, at $r = .19$. This suggests that there may be little detectable relationship between the two variables. This foreshadowed the non-significant and minor effects scientific literacy had in the models. One possibility for this is that there may be a longer lag effect than one year, as changes to CO~2~ from individual behaviors can take a longer time to trickle up. Including a longer lag on CO~2~, for example could better capture the long term effects of education. However, the age at which individuals can take make more climate-informed actions is unclear and likely varies by country. Additionally, it may be more difficult to associate any effect of education at age 15 with CO~2~ levels 5, 10, or 15 years later.
+
+CO~2~ per capita itself may not be the best measure to understand how individual choices impact carbon emissions. Even though CO~2~ per capita is a *per person* measure, it is really a measure of an entire nation's emission profile, including that of industry, divided by population [@andrew2021]. That means it measures more than simply the carbon-generating activities of individuals. 
+
+Measures more sensitive to individual activities may be more successful at capturing the effect of education and how that translates into individual and community choices. One such measure could be ecological footprint. A focus on CO~2~ emissions emphasizes the end product of activities, whereas ecological footprint serves as an indirect measure of the activities themselves, namely the land and water required to produce commodities that people consume [@dietz2007; @jorgenson2003]. In other words, this measure may more closely represent individual consumption, which in turn can influence climate change as well as other ecological issues. Future research could use such a measure in its aggregated or disaggregated form and build an argument in which science education influences consumption behaviors. Research can focus on climate change, or, because ecological footprint is related to environmental issues broadly, other concerns such as deforestation or resource use. While carbon emissions are a more narrow metric, they also may be affected by non-consumption-based activities such as voting and policy support [@wynes2021] or may be reduced via a shift to sustainable energy consumption [@sharma2021].
+
+The use of the IVS (Integrated Values Survey) to derive a left-right political orientation scale also poses a potential limitation for that particular variable. The use of this variable was based on @czarnekRightwingIdeologyReduces2021, who chose for their main analysis a single question from the IVS regarding self-placement on the left-right scale. This question, however, may not be comparable across countries and cultures, as the anchor terms "left" and "right" may have different meanings [@zuell2019]. For their supplementary analysis, @czarnekRightwingIdeologyReduces2021 chose a number of variables they *thought* were associated with different aspects of left-right ideology. The present dissertation utilized the same items, in addition to several others, and sought to derive a scale that was more empirically-based in the data. This was done through factor analysis. The final scale used three questions and had an Chronbach's alpha of .61. This may be considered acceptable, but is quite low. The low alpha suggests a scale with more items that strongly-associated items would provide a better measure of political ideology (@furr2014). Establishing such a scale was beyond the scope of this dissertation. Future researchers, on the other hand, can better explore the IVS for additional items that form a highly-reliable unidimensional scale of ideology. Or, researchers can find a different source for ideological affiliation altogether, though few sources are as globally and temporally comprehensive as the IVS.
+
+A final limitation is related to the internal validity of the research [@shadish2002]. The study design is based on existing and non-manipulatable data. The design relies on detecting and quantifying the associations among the variables given the data. In other words, the study is correlational in nature. This means that the results can only be interpreted as relationships rather than cause and effect. In order to make causal claims, a research study would need to be designed such that it is entirely clear the temporal relationship between science education and carbon emissions. In addition, the design would need to ensure all variables that need to be included are so as to rule out alternative explanations. Using secondary data from international large -n statistical methods allow causal inference from non-experimental research [@cordero2018]. However, causal inference from observational data is not appropriate for every research question. The conceptual framework of the current study (Figure \@ref(fig:tpd)), which encompasses individual, national, and international levels of analysis, may be too complex to lend itself to causal inference from observational data.
+
+\newpage
+
+```{r includedmap, fig.cap="Map of countries included in sample.", fig.width=6, fig.height=3}
+
+knitr::include_graphics("figures/coverage map.jpg")
+
+```
+
+
+```{r participation, fig.cap="Number of countries by number of times they participated in the PISA", fig.width=5, fig.height=2}
+
+knitr::include_graphics("figures/participation.jpg")
+
+```
+
+
 
 
 `r officer::run_pagebreak()`

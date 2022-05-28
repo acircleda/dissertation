@@ -1,4 +1,139 @@
-# CHAPTER FIVE CONCLUSIONS AND RECOMMENDATIONS
+# CHAPTER FIVE: Discussion and Conclusion
+
+This final chapter focuses on interpreting the statistical results. In particular, results are explicitly connected back to the research questions the methods aimed to answer. Results are discussed within the context of the conceptual framework and the relevant literature base. Following the discussion, implications for policy and future research will be considered. Finally, the conclusion section condenses the previous chapters into a summary that provides an adroit climax to the whole project. 
+
+## Discussion
+
+The conceptual framework put forth in Chapters 2 and 3 detailed a "trickle-up" process by which changes in understanding climate change through increased scientific literacy can influence individual beliefs and behaviors. These individual changes can then go on to affect family and friends, community, and even one's nation through shifts in behaviors, norms, and policy support. These shifts, in turn, can culminate in decreases in carbon emissions for a country. Based on prior literature and research, such a concept is realistic. Yet, no analysis has attempted to empirically assess it. The point of this dissertation was to measure these relationships and understand how they may differ by economic development status and gender, both of which have differential relationships to various aspects of climate change.
+
+Research question one explored whether a relationship existed between changes in scientific literacy as measured by the PISA and per capita CO~2~ emissions. The multilevel growth model that was estimated attempted to answer that question by examining the association between scientific literacy and CO~2~, holding a number of theoretically determined variables constant as a means to isolate the effect of scientific literacy. Furthermore, scientific literacy itself was separated into two distinct measures in order to isolate the within-country and between-country effects. The within-country effects (*scientific literacy within*) allow examination of how a country's fluctuations in scientific literacy scores are related to CO~2~. The between-country effects (*scientific literacy between*) allow comparison of average CO~2~ emissions per capita across countries. Figure \@ref(fig:bwwi) depicts this difference clearly. The colored lines represent the estimated effects for individual countries while the black line represents the effect for all countries. 
+
+Overall, the results indicated that there was a statistically significant relationship between scientific literacy and CO~2~ per capita when comparing between countries. In particular, a 1-point increase in average scientific literacy is associated with a 0.45% increase in CO~2~ per capita. As the PISA points out [@oecd2019a] and is further explained below, scientific literacy scores are relatively stable and when they do grow, it is by a small amount. By any measure, the effect of scientific literacy on CO~2~ is negligible. Still, the effect is positive whereas the conceptual framework indicates it should be negative. One way to think about this is to reinterpret the scientific literacy between effect as one that simply indicates that countries with higher average scientific literacy have higher CO~2~ emissions. When considered this way, it can be argued that what is driving CO~2~ is not scientific literacy but a characteristic of these countries that have higher average scores. 
+
+Figure \@ref(fig:co2slgdp) explains this further. On the vertical y-axis is CO~2~ per capita. On the x-axis is scientific literacy scores. The dots represent individual countries. They are colored according to their region and sized based on their GDP per capita, with larger circles representing countries with higher GDP. The black vertical line represents average scientific literacy scores. The black horizontal line represents average CO~2~ per capita. The plot is separated into OECD and Non-OECD panels. As depicted in the figure, most OECD nations have above-average scientific literacy scores and have above average CO~2~ emissions. These nations also tend to have high GDPs. We can also see a number of middle-income nations. We also find that nations below average on these two measures typically have lower GDPs and lower scientific literacy scores. While there are nations that deviate, the overall pattern suggests that GDP drives emissions rather than scientific literacy. This is further evidenced by examining the correlations (Figure \@ref(fig:allcor): GDP has a strong correlation to both scientific literacy (.51) and CO~2~ per capita (.47) whereas scientific literacy has a weak correlation with CO~2~ (.19). 
+
+That GDP is a major driver of emissions should not be surprising. It is a cornerstone of the $IPAT$ concept (GDP is a measure of affluence, *A*) and its significant relationship to emissions has been demonstrated multiple times [@dietz2007; @hailemariam2020; @mcgee2018; @mitchell2012]. Though not directly significant in the present research, its role, especially as it correlates to scientific literacy, is clear. 
+
+The current findings also echo previous research related to income inequality, as measured by the Gini coefficient. Aside from the effect of time and scientific literacy between countries, income inequality was the only other variable to have a significant relationship to per capita carbon emissions. A 1% increase in income inequality is associated with a 1.65% decrease in carbon emissions. That is, as income inequality grows, carbon emissions decrease. Like GDP, the current finding corroborates previous work by @hailemariam2020, @jorgenson2017, @jorgenson2018, @mcgee2018, and others.
+
+In what ways does income inequality contribute to increased carbon emissions? @jorgenson2018 suggested that nations where higher inequality exists tend to have wealthier individuals who consume more energy than the poor. Likewise, @mcgee2018 found that there is a significant interaction between GDP and Gini. For high Gini nations (those with higher inequality), emissions levels increases as GDP in those nations also increased. Similar findings can be seen in @hailemariam2020. They argue that inequality is driven by the consumption behaviors of the top income earners (e.g., the richest 10%) as well as the gap between low- and middle-income households, which the Gini coefficient is a better representation of. As inequality increases and the gap between low and middle-income households grows, carbon emissions are driven by the concept of the marginal propensity to emit, whereby increased income leads to increased carbon-intensive consumption.
+
+
+Thus far, based on the results of the dissertation, a relationship between scientific literacy, economics, and carbon emissions across countries has been established. However, when controlling for these factors, how does the relationship within a country over time unfold? That is, are changes in scientific literacy for an individual country significantly related to changes in that individual country's emissions, all else held constant?
+
+The results of the analysis found no significant relationship between an individual country's change in scientific literacy scores and their CO~2~ per capita levels. Likewise, the results also found no significant differences for OECD and non-OECD nations (research question two) or for males and females (research question three). This was somewhat surprising. These relationships as explained in the conceptual model should exist, but were not found by this research. This points to an issue of undetermination [@schultz2018; @stanford2021]. Undetermination refers to a "condition where the information available is insufficient for determining what we should believe" [@schultz2018, p. 55]. In essence, the non-significant results do not suggest a rejection of the relationship between changes in scientific literacy and emissions. Rather, the results simply point to a lack of evidence for determining this relationship more fully. Assuming that the conceptual framework is accurate in suggesting that scientific literacy should affect emissions, there may be a number of reasons why such an effect was not detected. Chapter 4 already pointed out a number of  statistical limitations that may have led to undetermination. However, there are several additional, education-related factors that should also be explored further.
+
+\newpage
+
+
+```{r bwwi, fig.cap="Within and between effects of scientific literacy on CO~2~", fig.width=6, fig.height=3}
+
+knitr::include_graphics("figures/betweenwithin.jpg")
+```
+
+\newpage
+
+```{r co2slgdp, fig.cap="The relationships between CO~2~, GDP, and scientific literacy.", fig.width=8, fig.height=6}
+
+knitr::include_graphics("figures/co2slgdp.jpg")
+```
+
+\newpage
+
+Closer examination of scientific literacy's change over time within countries shows many countries have relatively stable scores or scores that fluctuate wildly over time such that in one period there is marked growth while in the next period there is large decline (see Figure \@ref(fig:slchange)). In general, there is little variation in scientific literacy scores over time to find a clear association with CO~2~ emissions. This is not a unique finding. @rowley2019a also found that during the 2006 to 2012 period, PISA scores of most individual countries typically did not significantly increase or change.
+
+While we may assume, or at least hope, that scientific literacy increases over time, that is unfortunately not evident. In fact, the PISA argues that large improvements in a country's performance should not be expected, as changes in educational policy and practice are incremental and can take a while to surface [@oecd2019a, p. 121]. This slow-to-surface phenomena may be one reason why a significant relationship between changes in a country's CO~2~ and changes in its scientific literacy scores were not found.
+
+
+Undetermination may also be aided by other factors. For example, while scientific literacy as measured by the PISA may include climate change and related content, it is ultimately a test of science education in general rather than climate (change) education in particular. There is no guarantee of either the quantity or quality of climate change education students receive through their science education classwork. For example, @ranney2016 has demonstrated that mechanistic climate knowledge can help shift individual understanding of climate change and the need for action. It is entirely plausible that students are not given a strong mechanistic climate change foundation through their home education systems.
+
+Indeed, though climate change education has been part of the United Nations' sustainable development goals, which has an influence on educational content across the globe [@sinnes2016; @unitednations2014], climate change may neither be the focus nor the norm of science education courses. Data on how climate change is integrated into national curricula is lacking. @unesco2021 offers perhaps the only source of cross-national information on this. In their survey of 129 documents from 100 countries, they found that just 53% of countries' curricula mention climate change. For most of the countries surveyed, climate change accounts for about 10% or less of curricular content (Figure \@ref(fig:unescocc)). Interestingly, sub-Saharan Africa has the largest percentage of climate change content - an area that is not assessed by the PISA and by extension is not part of this research.
+
+
+While UNESCO's brief does offer case studies of national integration for a few countries, their findings do not offer enough details as to either the depth or breadth of the way climate change is being taught. Even when national curricula do include climate change, implementation fidelity may vary widely or be completely lacking. 
+
+The United States offers an example of this variation. No national curriculum exists in the United States. However, many states have chosen to adopt a set of science standards called the Next Generation Science Standards (NGSS). Other states have modified versions of the NGSS while several others have homegrown sets of state standards. The NGSS was the first set of standards to place climate change explicitly in the curriculum. In fact, objection to climate change content (among other "controversial" content, such as evolution) is one of the reasons why states created modified or altogether new standards [@worth2021]. A grading of these standards by @nationalcenterforscienceeducation2020 on an A-F scale for each state found that NGSS states and those who have modified NGSS standards typically have the highest grades in terms of how climate change is taught. States with homegrown standards typically have the lowest grades.
+
+\newpage
+
+
+```{r slchange, fig.cap="Change in scientific literacy over time by region.", fig.width=6, fig.height=3}
+
+knitr::include_graphics("figures/slchanges.jpg")
+```
+
+\newline
+\newline
+
+```{r unescocc, fig.cap="Percentage of climate change content in curricula by region. Figure reproduced from @unesco2021.", fig.width=6.13, fig.height=3.5}
+
+# tribble(~region, ~`No Focus`, ~`Very Minimal`, ~`Minimal`, ~`Moderate`, ~overall,
+#         "Central and Southern Asia", .6,.4,0,0,.04,
+#         "Eastern and South-Eastern Asia", .54,.23,.15,.08,.07,
+#         "Europe and North America", .6,.4,0,0,.09,
+#         "Latin America and the Caribbean", .39,.48,.1,.03,.19,
+#         "Northern Africa and Western Asia", .81,.13,.06,0,.04,
+#         "Oceania", .75,0,.25,0,.26,
+#         "Sub-Saharan Africa", .26,.55,.19,0,.31) %>%
+#   pivot_longer(`No Focus`:`Moderate`) %>%
+#   mutate(name = fct_inorder(name)) %>%
+#   ggplot(aes(x=value, y = reorder(region, overall), fill=fct_rev(name)))+
+#   geom_col()+
+#   geom_text(aes(x=1.3, label=scales::percent(overall)))+
+#   annotate("text", x=1.3, y=7.9, label="% of Climate\nChange Content", size=3)+
+#   scale_x_continuous(limits=c(0,1.4),
+#                      breaks=seq(0,1,.2), labels=scales::percent_format(1))+
+#   scale_fill_manual(name="Extent of Climate Change Focus",
+#                     values=c("#006C93", "#2197A9", "#B9E1E2",
+#                               "#A7A9AC"),
+#                     guide = guide_legend(reverse = TRUE))+
+#   guides(fill=guide_legend(title.position="top",
+#                            title.hjust = 0.5))+
+#   ylab(NULL)+
+#   xlab("% of Climate Change Focus")+
+#   coord_cartesian(clip="off")+
+#   theme_classic()+
+#   theme(legend.position = "top",
+#         legend.justification = "center")
+
+# ggsave(file="figures/unesco.jpg", plot=last_plot(), height=4, width=7)
+
+knitr::include_graphics("figures/unesco.jpg")
+```
+
+The implication of these various standards means that students in the same country can receive radically different climate (change) education, ranging from a few weeks to none at all. Perhaps worse is that what is taught about climate change may be factually incorrect or alienated from human activities. Such an example is likely in countries where climate change is seen as political or where there is a strong, well-funded climate change denial movement [@brulle2020; @mann2021], something more likely to occur in Western nations [@czarnekRightwingIdeologyReduces2021].
+
+There are also a number of other plausible reasons for undetermination of the conceptual framework for this dissertation. For example, perhaps the climate education that does exist has a positive effect on individual beliefs, but lack of education on effective actions is an issue. @stevenson2018 also identified such a phenomenon, where teaching about climate change positively affected concern and hope but not behavior. It could also be that a focus on action is not emphasized. For example, @wynes2019 found that most Canadian secondary school curricula emphasized mechanistic knowledge of climate change rather than effective actions. Possibly due in part to this, @wynes2020 also found that a general lack of understanding about what effective climate actions look like.
+
+## Implications
+
+The undetermination of the results and the possible reasons why effects have thus far not been detected, coupled with the statistical limitations of the models, suggest a number of future research directions. In order to improve the statistical power of the model, the analysis could be redone after several additional PISA assessment cycles pass. This not only ensures a larger sample size to work with but the expanded time span may allow for the measuring of education effects of policy changes made a decade or more in the past.
+  
+Augmenting the statistical models to include measures of the quality or quantity of climate (change) education can also improve the insight derived from these models. Currently, such an international data set of these measures does not exist, but would certainly be worth curating for future research. Including variables to capture misinformation or media bias may also shed light on interesting interactions with education and emissions Alternatively, the analysis can focus on a single country, where more localized variables can be included. For example, a model focusing on the United States could include science scores by state from the Trends in International Mathematics and Science Study [PISA scores do not have state information; @carnoy2015]. It could look at state-level emissions and the interaction between science trends and climate (change) education quality from @nationalcenterforscienceeducation2020 on emissions. Rather than examining CO~2~ emissions, utilizing another outcome may pick up on small shifts in behavior, such as policy support, ecological footprint, or fossil-fuel-based energy use may be viable alternatives to carbon emissions.
+
+Besides research implications, there are definite implications for education and policy. Education has been considered a crucial component in fighting climate change [@unesco2015]. Yet, just over half of curricula around the globe mention climate change. Few countries likely teach it with any depth that considers not only its mechanistic components but also effective actions that can be done to foster individual and systemic change. If science education (and, by extension, climate change education) is to have any effect on the climate crisis, the suggestions from UNESCO [-@unesco2021, p. 12] are worth considering:
+
+1. Climate change education should be a core curriculum component in every country.
+2. Greater focus on climate change content is needed in the curricula of countries most responsible for climate change.
+3. Climate change education should be integrated across all levels and disciplines of learning.
+4. Teachers and school leaders need to be prepared to teach climate change.
+5. Climate change education must equally focus on ‘head’, ‘heart’ and ‘hands’ – and teachers need to be ready.
+6. Climate change education should be woven into diverse aspects of countries’ policies and programmes.
+7. Ministries of Education and Environment can and should work together to boost climate change education.
+
+To add to those suggestions, education must focus on increasing knowledge, raising concern, instilling hope, and fostering action [@nicholas2021; @steinberger2022]. This may be particularly important for many countries with high scientific literacy rates, which are associated with higher carbon emissions. @nielsen2021 point out five roles that high-SES individuals can follow to have a meaningful effect on the climate: consumer, investor, citizen, organizational participant, and role model. Many of these can apply directly to adolescents or indirectly to their families. Adolescents (or any school-aged child) can follow and promote sustainable consumption, encourage their parents to invest in fossil-fuel-free portfolios, encourage climate-friendly candidate and policy support, promote sustainable changes at school [e.g., @lieberman2022], and become role models of sustainability to their larger community [see also @projectdrawdown2020 for additional actions and their related emissions changes].
+
+Knowledge is key for helping students understand the climate crisis. Teaching about hope and action is crucial for moving beyond knowledge. These are, however, admittedly large challenges, ones that may ask teachers to step out of their comfort zone. But in a world where nearly 60% of young people around the globe are experiencing some form of climate anxiety [@marks2021], there is a strong and well-funded climate denial movement [@brulle2020, @mann2021], and literal time is running out (we are expected to exceed 1.5 degrees of warming by 2030), it seems time to, quoting Greta Thunberg (2018) again, "wake up and change".
+
+## Conclusion
+
+Human activities have radically changed the climate, negatively impacting most species of life on earth, people included. While technology has advanced to such a degree that we now posses most of the means of preventing further climate change, there are still major social and political hurdles that stand in the way. Education has been touted as one possible means for helping to move forward necessary action on climate change. A hybrid model of planned behavior and human capital helps explain how education can affect climate change. Essentially, increased knowledge about science and climate change can lead to increased beliefs and concern among adolescents, which can then go on to affect their behavior and the behavior of their friends, family, and community. Through increased belief in climate change, pro-environmental behavior, and policy support at local and national levels, there may be a "trickle-up" impact of education on national carbon emissions.
+
+  The current dissertation sought to assess this model and determine what, if any, relationship education may have on carbon emissions per capita. The PISA scientific literacy assessment was chosen as the key independent variable, as it attempts to measure the ability of fifteen-year olds to use science knowledge in order to address the issues that are facing them. There is arguably no greater issue than climate change. A multilevel growth model was fit that examined changes in CO~2~ per capita and PISA scientific literacy, holding a number of social, political, and economic variables constant.
+  
+  The results indicated that, while increases in scientific literacy across all countries are significantly associated with an increase in CO~2~ per capita, this is likely mostly driven by economics, namely GDP. There were no significant relationships between changes in scientific literacy within a country and that country's emissions. This suggests evidence for the conceptual framework is undetermined, as there are a number of statistical and educational factors that may be attenuating any potential effect from education.
+  
+  Based on this research, it is suggested that shifts in educational policies and practices that emphasizes and integrates science and climate change education across the curricula may have a greater effect on emissions than is currently the case. In addition, science and climate education should be imbued with a focus on effective climate change actions that can foster the individual and systemic changes needed to avert a global catastrophe.
 
 
 `r officer::run_pagebreak()`

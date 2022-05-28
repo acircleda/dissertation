@@ -1,31 +1,112 @@
-# APPENDIX
+#  APPENDIX
 
-`r officer::run_pagebreak()`
 
-<!-- BEGIN APPENDIX BELOW -->
-
+<!---BLOCK_LANDSCAPE_START--->
 ## Appendix A
 
-```{r sltable, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, tab.cap="Number of Students and Mean Scientific Literacy Score by Country and PISA Assessment Year"}
+```{r sltable, echo=FALSE, message=FALSE, tab.cap="Number of Students and Mean Scientific Literacy Score by Country and PISA Assessment Year"}
 
-load("data/final data/table_figure_data.Rdata")
-
-appendix_a <- summary %>% 
-  rename(Country = country) %>%
-  arrange(Country)
-
-sl_table_data %>%
-  flex %>%
-  autofit() %>%
-  add_header_row(top=T,
-                 values=c("", "", "Students / Scientific Literacy Score"),
-                 colwidths = c(1,1,5)) %>%
-  align(i=1, part="header", align="center") %>%
-  hline(i=seq(3, nrow(sl_table_data), 3)) %>%
-  vline(j=2:7, part="body") %>%
-  footnote(i=which(sl_table_data == "China"), j=1,
-           value=as_paragraph("China refers to Shanghai (2009, 2012); Beijing, Shanghai, Jiangsu, and Guangdong (2015); and Beijing, Shanghai, Jiangsu, and Zhejiang (2018)")) %>%
-  fontsize(size=8, part="footer")
+sl_table_final
 
 ```
 
+
+<!---BLOCK_LANDSCAPE_STOP--->
+
+\newpage
+
+## Appendix B
+
+The following analysis extends the methods outlined by @czarnekRightwingIdeologyReduces2021 in developing a measure for Left-Right political orientation. Whereas their methods selects questions that *seem* related to political orientation, the following exploratory factor analysis seeks to identify items that likely measure left-right orientation as a valid psychological construct. 
+
+Data from the Integrated Values Survey [@2021c] is used for this analysis. Questions selected by @czarnekRightwingIdeologyReduces2021 are included, as well as additional questions identified as possibly related to political orientation (Table \@ref(tab:ivsquestions)). Items were reverse-coded or recoded as needed to ensure left-learning items are at the lower end of the scale and right-leaning items were on the higher end of the scale. Because of the multi-wave design of the survey, there is missing data for years within a wave a country was not surveyed. In order to conduct the factor analysis with missing data, a heterogenous correlation matrix based on pairwise complete observations were created using the `polycor` R package [@fox2022].
+
+```{r, ivsquestions, tab.cap="Integrated Values Survey Items Used in Factor Analysis"}
+tribble(~Item, ~`Item Description`, ~`Original Scale`,
+         "E033", 
+            "Self positioning in political scale",
+            "1 = Left, 10 = Right",
+        "F118", 
+            "Homosexuality",
+            "1 = Never justifiable, 10 = Always justifiable",
+        "F120", 
+            "Abortion",
+            "1 = Never justifiable, 10 = Always justifiable",
+         "C001",
+              "When jobs are scarce, men have more right to a job than women",
+              "1 = Agree, 2 = Disagree, 3 = Neither",
+        "E143",
+              "Immigration policy",
+            "1 = Let anyone come who wants to; 4 = Prohibit people coming here from other countries",
+        "E224", "Governments tax the rich and subsidize the poor",
+            "0 = It is against democracy, 10 = An essential characteristic of democracy",
+         "E225", "Religious authorities interpret the laws",
+              "0 = It is against democracy, 10 = An essential characteristic of democracy",
+         "E227", "People receive state aid for unemployment",
+              "0 = It is against democracy, 10 = An essential characteristic of democracy",
+         "E233", "Women have the same rights as men",
+              "0 = It is against democracy, 10 = An essential characteristic of democracy",
+         "E233A", "The state makes people's incomes equal",
+              "0 = It is against democracy, 10 = An essential characteristic of democracy",
+         "E035", "Income equality",
+        "1 = Incomes should be made more equal, 10 =We need larger income differences as incentives",
+         "E036", "Private vs state ownership of business", 
+        "1 = Private ownership of business should be increased, 10 = Government ownership of business should be increased",
+         "E037", "Government responsibility",
+         "1 = Individuals should take more responsibility for providing for themselves, 10 = The state should take more responsibility to ensure that everyone is provided for") %>%
+  flextable() %>%
+  autofit()
+```
+
+
+A KMO value measuring sampling adequacy was .62. KMO values above .60 suggest proceeding with the factor analysis. Likewise, Bartlett's test of sphericity was significant, indicating there are relationships among the variables and that factor analysis can proceed. An initial parallel analysis to determine the number of factors the item responses represented indicated four possible factors. An initial, unrotated factor solution suggested a single factor based on the number of eigenvalues greater than 1. To begin with, a four-factor solution was fit (Table \@ref(tab:fa2)). The results indicate a 3-item factor, two 2-item factors, and a one-item factor with a cross-loading on one of the 2-item factors. The results did not imply a strong model with a clear, underlying factor structure.
+
+```{r fa2, tab.cap="Initial 4-Factor Solution"}
+
+fa_2_table
+```
+
+
+A second factor analysis was fit with one factor (Table \@ref(tab:fa3)). The solution suggested three items load onto a single factor, with two loading strongly and one with a somewhat weak loading. For the purposes of establishing a more valid measure of left-right political ideology than one that was based on mere questions only, the result was considered an adequate solution. Thus, left-right orientation for this research was comprised of questions regarding homosexuality, abortion, and women's right to work (alpha = .61). Admittedly, this is not the strongest set of items. However, it is sufficient for the present purposes. Any further analysis is beyond the scope of the present research.
+
+```{r fa3, tab.cap="Final 1-Factor Solution"}
+
+fa_3_table
+```
+
+
+\newpage
+
+## Appendix C
+
+All imputation analyses are derived from the `JointAI` package [@erler2021]. Note that the initial analysis included region as a variable, and they are included in the output below. The traceplots (Figure \@ref(fig:traceplot)) of each variable in the initial analysis suggests excellent mixing and convergence across all chains over 10,000 imputations. Gelman-Rubin critical values were all sufficient at around 1 (Table \@ref(tab:grtable)). Monte Carlo error of the samples were all below 5%. A plot of posterior densities (Figure \@ref(fig:dens)) shows overlapping of chains across iterations, also suggesting adequate convergence.
+
+```{r traceplot, fig.cap="Traceplot of MCMC Chains Over 10,000 Iterations"}
+knitr::include_graphics("figures/trace.jpg")
+```
+
+
+```{r grtable, tab.cap="Gelman-Rubin Criterion for Convergence"}
+gr_table$psrf %>%
+  as.data.frame() %>%
+  rownames_to_column("Variable") %>%
+  flextable() %>%
+  autofit()
+```
+
+```{r mcplot, fig.cap="Plot of Monte Carlo Sampling Errors"}
+knitr::include_graphics("figures/mc_plot.jpeg")
+```
+```{r dens, fig.cap="Plot of Posterior Densitites"}
+knitr::include_graphics("figures/densplot.jpeg")
+```
+
+## Appendix D
+
+A reference list of all R packages used for this dissertation:
+
+```{r}
+block_pour_docx("packages.docx")
+```
+
+`r officer::run_pagebreak()`

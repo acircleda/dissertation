@@ -23,4 +23,9 @@ gsheet::gsheet2tbl(url="https://docs.google.com/spreadsheets/d/1pyWCB7-vhJgXR9O2
 ```
 
 
+```{r}
+block_section(prop_section(type = "continuous"))
+```
+
+
 `r officer::run_pagebreak()`

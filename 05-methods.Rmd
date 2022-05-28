@@ -1,315 +1,572 @@
 
 # CHAPTER THREE: Research Design and Methods
 
-This chapter draws on the conceptual framework and prior research to outline quantitative methods that will be used to answer the primary research questions. In order to answer these questions, the methods are divided into two phases, reflecting micro- and macro-level data. Phase one refers to the estimation of PISA scientific literacy scores per country per three-year cycle. Phase two refers to building a model to estimate CO~2 emissions over time.
+This chapter draws on the conceptual framework and prior research to outline quantitative methods that will be used to answer the primary research questions. In order to answer these questions, the methods are divided into two phases, reflecting micro- and macro-level data. Phase one refers to the estimation of PISA scientific literacy scores per country per three-year cycle. Phase two refers to building a model to estimate CO~2~ emissions over time.
 
 ## Phase One: PISA Scientific Literacy Scores
 
-### How PISA Scores are Estimated
 
-In order to estimate scientific literacy scores correctly, the psychometric and testing properties of the PISA must be taken into account. Recall that the goal of the PISA is to measure the ability of 15-year-olds in applying their reading, math, and science literacy skills to real life, at an international scale. However, the PISA is not a measure of *individual* abilities. Instead, PISA results are meant to be representative of the nations and economies from which students are tested. 
+In order to estimate scientific literacy scores accurately, the psychometric and testing properties of the PISA must be taken into account. Recall that the goal of the PISA is to measure the ability of 15-year-olds in applying their reading, math, and science literacy skills to real life, at an international scale. However, the PISA is not a measure of *individual* abilities. Instead, PISA results are meant to be representative of the nations and economies from which students are tested. 
 
-Because the OECD cannot assess every student in every country, the PISA generally employs a two-stage stratified sampling design where schools are sampled within a country and then students sampled within schools [@oecd2012, p. 61-84]. This ensures nationally representative samples from which inferences can be made. To aid in this analysis, the PISA provides student sampling weights, which scale the sample up to match the population size), and a set of 80 replicate weights to reduce sampling variance [@oecd2012]. 
+Because the OECD cannot assess every student in every country, the PISA generally employs a two-stage stratified sampling design where schools are sampled within a country and then students are sampled within schools [@oecd2012, p. 61-84]. This ensures nationally representative samples from which inferences can be made. To aid in this analysis, the PISA provides student sampling weights, which scale the sample up to match the population size, and a set of 80 replicate weights to reduce sampling variance [@oecd2012]. 
 
 Just as the PISA cannot assess every student, it also cannot ask every question to the students it does assess. Within each assessment cycle, there are hundreds of questions drawn from the major and minor domains. Asking every question of every student would be unfeasible. Instead, students take a subset of questions during a two-hour test period. At the end of the assessment cycle, the PISA has generated a mix of observed values - questions students have answered - and missing data - questions students have not answered.
 
-Using the data generated, the ability of students is modeled using Item Response Theory (IRT). IRT models assess the latent abilities of test-takers by estimating the probability of responding to an item correctly. This probability is derived from the relationships between student answers and various item parameters, such as item difficulty, item discrimination, and guessing. Item difficulty refers to the latent ability of an individual required have a 50% chance of answering an item correctly. For example, an item with a difficult of *b* = 0 means an individual with a latent ability of $\theta=0$ (i.e., average ability) has a 50% chance of getting the item correct. Item discrimination refers to the ability of a test item to distinguish between individuals with low and high abilities. Guessing refers to the probability of an individual with a low ability ($\theta < 0$) getting an answer correct [@desjardins2018; @furr2014].
+Using the data generated, the ability of students is modeled using Item Response Theory (IRT). IRT models assess the latent abilities of test-takers by estimating the probability of responding to an item correctly. This probability is derived from the relationships between student answers and various item parameters, such as item difficulty, item discrimination, and guessing. Item difficulty refers to the latent ability of an individual required to have a 50% chance of answering an item correctly. For example, an item with a difficulty of *b* = 0 means an individual with a latent ability of $\theta=0$ (i.e., average ability) has a 50% chance of getting the item correct. Item discrimination refers to the ability of a test item to distinguish between individuals with low and high abilities. Guessing refers to the probability of an individual with a low ability ($\theta < 0$) getting an answer correct [@desjardins2018; @furr2014].
 
-<!-- IRT Steps -->
-Prior to 2015, the PISA employed two different IRT models: a Rasch model and a partial credit model (PCM). The Rasch model, which is used to estimate latent ability based on only item difficulty, was fit to dichotomous data. The PCM approach, an extension of the Rasch model, was fit to polytomous data [@oecd2015]. Since 2015, a hybrid approach has been used that first estimates responses using the Rasch and PCM approaches. During this stage item fit is estimated and if poor fit is detected, a model that includes item difficulty and item discrimination is used. For dichotomous data a two parameter model (2PL) is used while a generalized partial credit model (GPCM) is used for polytomous data. These two models are considered more adept at handling the complexities of PISA data. Items are checked across countries to determine if they are functioning differently for that country (an indication of country differential item functioning [DIF]). If so, national item parameters specific to that country are used for estimation [@oecd2017]. 
+Prior to 2015, the PISA employed two different IRT models: a Rasch model and a partial credit model (PCM). The Rasch model, which is used to estimate latent ability based on only item difficulty, was fit to dichotomous data. The PCM approach, an extension of the Rasch model, was fit to polytomous data [@oecd2015]. Since 2015, a hybrid approach has been used that first estimates responses using the Rasch and PCM approaches. During this stage, item fit is estimated and, if poor fit is detected, a model that includes item difficulty and item discrimination is used. For dichotomous data a two-parameter model (2PL) is used while a generalized partial credit model (GPCM) is used for polytomous data. These two models are considered more adept at handling the complexities of PISA data. Items are checked across countries to determine if they are functioning differently for that country (an indication of country differential item functioning [DIF]). If so, national item parameters specific to that country are used for estimation [@oecd2017]. 
 
 The end result of this process is a model of student responses that can be used to estimate ability. However, recall that students do not answer all questions and there is inherent missingness to PISA data. What this means is that "student proficiencies (or measures) are not observed; they are missing data that must be inferred from the observed item responses" [@oecd2009, p.153]. Because of this, PISA scores are not meant to represent individual student abilities or to compare individual students but rather be a representative measure of large groups, such as nations [@jerrim2017]. 
 
-Rather than a single ability score, students get a set of 5-10^[10 plausible values were generated for each student starting in 2015] *plausible* values, which represent predicted proficiency.  Plausible values are generated based on the item parameters and a latent regression population model that uses a combination of item response time and student background characteristics. These plausible values are then linearly transformed and placed on a common scale that can be linked across cycles, with a mean of 500 and a standard deviation of 100. 
+Rather than a single ability score, students get a set of five to ten^[10 plausible values were generated for each student starting in 2015] *plausible* values, which represent predicted proficiency.  Plausible values are generated based on the item parameters and a latent regression population model that uses a combination of item response time and student background characteristics. These plausible values are then linearly transformed and placed on a common scale that can be linked across cycles, with a mean of 500 and a standard deviation of 100. 
 
-To calculate the final score of a country (or other grouping, e.g., scores for females or males within a country) for a particular PISA assessment, a weighted mean based on the product of a plausible values and student weights is calculated. For example, scientific literacy plausible value 1 is multiplied by the full student weights to create a mean score for plausible value 1, $\hat\mu_1$. This is then repeated for the remaining plausible values, $\hat\mu_{2...n}$. These values are then averaged to get the final estimated score: $\hat\mu=\frac{1}{5}(\hat\mu_{1}+\hat\mu_{2}...+\hat\mu_{n}$. To generate the error variance of the score requires a combination of the sum of the plausible values' sampling variances and the imputation (measurement error) variance [see @caro2017; @oecd2009a for formulas]. These scores can then be used in further cross-sectional or longitudinal analyses [@aloisi2017; @campbell2021; @lam2021; @nces; @rowley2019a].
+To calculate the final score of a country (or other grouping, e.g., scores for females or males within a country) for a particular PISA assessment, a weighted mean based on the product of plausible values and student weights is calculated. For example, scientific literacy plausible value 1 is multiplied by the full student weights to create a mean score for plausible value 1, $\hat\mu_1$. This is then repeated for the remaining plausible values, $\hat\mu_{2...n}$. These values are then averaged across the number of plausible values, *n*, to get the final estimated score: $\hat\mu=\frac{1}{5}(\hat\mu_{1}+\hat\mu_{2}...+\hat\mu_{n})$. To generate the error variance of the score requires a combination of the sum of the plausible values' sampling variances and the imputation (measurement error) variance [see @caro2017; @oecd2009a for formulas]. These scores can then be used in further cross-sectional or longitudinal analyses [@aloisi2017; @campbell2021; @lam2021; @nces; @rowley2019a].
 
-### Estimation Method
-
-Scientific literacy scores are estimated for each cycle following the methods outline above and using the `intsvy` R package [@caro2017]. Scores are estimated for all students in each country, and then separately for males and females within each country.
+Scientific literacy scores are estimated for each cycle following the methods outlined above and using the `intsvy` R package [@caro2017]. Scores are estimated for all students in each country, and then separately for males and females within each country.
 
 ## Phase Two: PISA Scientific Literacy Scores and Emissions Over Time
 
 The research questions suggest a longitudinal model that looks at the relationship between a set of variables over time. Furthermore, the nature of the independent variable, scientific literacy, is represented as repeated measures nested within countries. Therefore the research and data indicate that a multilevel growth model would be most appropriate to answer the key research questions. This method takes advantage of the nested and longitudinal nature of the data, allowing the estimation of fixed and random effects to model different types of change.
 
-A multilevel growth curve model has several advantages over other longitudinal analyses. The ability to fit individual growth curves for each country allows estimation of a model that more closely models reality. The model allows for missing data and does not require every country to have participated in every measurement occasion (i.e., assessment cycle). In addition, these models can include both time-varying and time-invariant covariates, allowing for statistical control over the independent variable. Finally, growth models typically have higher statistical power than other methods [@hox2018, p. 88-89].
+A multilevel growth model has several advantages over other longitudinal analyses. The ability to fit individual growth curves for each country allows estimation of a model that more closely reflects reality. The model allows for missing data and does not require every country to have participated in every measurement occasion (i.e., assessment cycle). In addition, these models can include both time-varying and time-invariant covariates, allowing for statistical control over the independent variable. Finally, growth models typically have higher statistical power than other methods [@hox2018, p. 88-89].
 
-In the multilevel growth modeling framework, fixed effects estimate parameters across all countries. A fixed effect for the intercept in a growth model indicates the grand mean of CO~2~ emissions across all countries. A fixed effect for time would indicate a constant rate of change across all countries such that a one-unit increase in time corresponds to an increase in CO~2~ emissions across all countries equal to the parameter for the fixed effect of time. Random effects allow intercepts and slopes to vary at the first level, meaning each country is allowed to have its own intercept and slope. In the multilevel growth model, this is indicated by a random effect variance for the intercept, which estimates between-country variation in CO~2~, and a random effect for the slope, which indicates between-country variation in the rate of change. Furthermore, a correlation between the intercept and slope is also estimated, allowing understanding of the relationship between CO~2~ emissions and rate of change as well as their shape and direction. The addition of a random slope for scientific literacy allows estimation of its effects on CO~2~ emissions for individual countries [@grimm2017; @hoffman2015].
+In the multilevel growth modeling framework, a fixed effect refers to an estimate that is the same across countries. For example, in the models below, the fixed effect for the intercept represents the grand mean of CO~2~ emissions across all countries. The fixed effect for time indicates a constant rate of change across all countries, where a one-unit increase in time corresponds to an increase in CO~2~ emissions across all countries equal to the regression coefficient. Random effects allow intercepts and slopes to vary across upper-level units, meaning each country is allowed to have its own intercept and slope. In the multilevel growth model, this is indicated by a random effect variance for the intercept, which estimates between-country variation in CO~2~, and a random effect for the slope, which indicates within-country variation in the rate of change. Furthermore, a correlation between the intercept and slope can also be estimated, allowing understanding of the relationship between CO~2~ emissions and rate of change as well as their shape and direction. The addition of a random slope for scientific literacy allows estimation of its effects on CO~2~ emissions for individual countries [@grimm2017; @hoffman2015].
 
-Of particular importance for any multilevel model is proper interpretation of the intercept. All variables should be centered such that when the predictor equals zero it has a meaningful interpretation as part of the intercept. There are several common centering strategies for multilevel models. One strategy is grand-mean centering ($x-\bar{x}$) in which the intercept represents the mean outcome for countries with an average value for predictor *x*. Related, centering can also occur at a specific value ($x-C$) with an intercept interpretation of the mean outcome for countries with that value for the predictor. 
+Of particular importance for any multilevel model is proper interpretation of the intercept. All variables should be centered such that when the predictor equals zero it has a meaningful interpretation as part of the intercept. There are several common centering strategies for multilevel models. One strategy is grand-mean centering ($x-\bar{x}$) in which the intercept represents the mean outcome for countries with an average value for predictor *x*. Centering can also occur at a specific value ($x-C$) with an intercept interpretation of the mean outcome for countries with that value for the predictor. 
 
 A second strategy is country-mean centering (also known as group-mean centering or centering within cluster). This approach is especially suited for longitudinal data [@hoffman2015]. With country-mean centering, the intercept is interpreted as the average outcome for each country. A country-mean centered variable is calculated as  $x_{ti} - \bar{x_i}$, where the mean of country *i* is subtracted from the value for country *i* at time *t*. This represents the level-1 within-country effect of the variable but discards any between-country information. Thus, a level-2 predictor can also be included to represent between-country variation $\bar{x_i}$. The inclusion of both centered predictors in the model allows estimation of these predictors' main effects separately at both levels. 
 
-The following section describes the variables that will be included in the growth model along with their centering strategies. Table \@ref(tab:vardesc) presents summary statistics for all continuous variables.
+The following section describes the variables that will be included in the growth model along with their centering strategies. \@ref(tab:vardesc) presents summary statistics for all continuous variables.
 
 ### Key Variables
 
-**Dependent Variable**. The dependent variable will be CO~2~ emissions per capita for all countries included in the analysis. Data will be downloaded from the Global Carbon Atlas (http://www.globalcarbonatlas.org/), which provides the most recent data on CO~2~ emissions [@andrew2021; @friedlingstein2021]. Data will be included for 2007, 2010, 2013, 2016, and 2019, representing a one year lag from PISA administration dates. For China, the PISA has only been administered to either single cities (e.g., Shanghai in 2009 and 2012) or city/region groupings (e.g., Beijing, Shanghai, Jiangsu, and Zhejiang in 2018). Because city- and region-level emissions data is not readily available, data will be used for the whole of China. Kosvo has complete data for 2008-2018. Data for Kosovo for the years 2007 and 2019 data comes from the International Energy Agency^[https://www.iea.org/countries/kosovo]. \@ref(fig:co2overtime) displays...
+**Dependent Variable**. The dependent variable is tons of carbon dioxide (tCO~2~, referred to simply as CO~2~) emissions per capita for all countries included in the analysis. Data comes from the Global Carbon Atlas (http://www.globalcarbonatlas.org/), which provides the most recent data on CO~2~ emissions [@andrew2021; @friedlingstein2021]. Data is included for 2007, 2010, 2013, 2016, and 2019, representing a one-year lag from fall PISA administration dates. For China, the PISA has only been administered to either single cities (e.g., Shanghai in 2009 and 2012) or city/region groupings (e.g., Beijing, Shanghai, Jiangsu, and Zhejiang in 2018). Because city- and region-level emissions data is not readily available, data will be used for the whole of China. Kosovo has complete data for 2008-2018. Data for Kosovo for the years 2007 and 2019 data comes from the International Energy Agency^[https://www.iea.org/countries/kosovo. Note: For years in which both had data, valyes between the Global Carbon Atlas and International Energy Agency were fairly consistent]. Figure \@ref(fig:co2overtime) displays a time series of CO~2~ per capita for individual countries by region, with average CO~2~ per capita indicated by the same orange line in each panel. The panels show that over time, CO~2~ per capita emissions are falling for most countries. In addition, a majority of countries have emissions below the average, with the Middle East and North Africa (MENA) and Western Nations (including the US and Western, Northern, and Southern Europe) having numerous countries above the average. In general, countries show a mostly linear decline in emissions, though a minority of countries show a slightly different pattern.
 
-```{r co2overtime, echo=FALSE, message=FALSE, warning=FALSE}
-co2_line_graph <- all_data %>% select(country, year, co2) %>%
-  group_by(country) %>%
-  mutate(mean = mean(co2, na.rm=T)) %>%
-  ungroup() %>%
-  mutate(rank = rank(-mean),
-         top = ifelse(rank <= 25, country, NA),
-         highlight = ifelse(is.na(top), NA, co2))
 
-dscale <- viridis::plasma(n = 6)
-dscale[6] <- "#787c10"
+**Independent Variable**. The main independent variable of interest is PISA scientific literacy scores estimated as described in Phase One. For each assessment cycle, individual countries will have a scientific literacy score for all students combined, and separate scores for males and females. Country-mean centering, along with including the country mean at level-2, is used to estimate the pure within- and between-country effects. A level-1 variable of within-country scientific literacy is estimated as the difference between an assessment cycle and the level-2 country mean, $SL_{within}=sl_{ti}-\bar{sl_i}$. A level-2 variable representing the mean scientific literacy score across measurement cycles is estimated as $SL_{between}=\bar{sl_i}$. Thus, the intercept will refer to average CO~2~ emissions for a country with an average scientific literacy score. Appendix A, \@ref(tab:sltable) shows detailed information on total, female, and male scientific literacy score per country and cycle as well as the number of students who participated in each cycle. Figure \@ref(fig:pisascores) displays all countries and their overall PISA scientific literacy score for each year.
 
-ggplot()+
-  geom_line(data=co2_line_graph,
-            aes(x=year, y=co2, group=country), color="grey90")+
-  geom_line(data=co2_line_graph,
-            aes(x=year, y=highlight, group=country, 
-                color=top))+
-  ggrepel::geom_label_repel(data = filter(co2_line_graph, year==2018),
-            aes(x=2020, y=highlight, group=country, label=country,
-                color=top), hjust=0, size=3)+
-  stat_summary(data=co2_line_graph,
-               aes(x=year, y=co2, color="mean"),
-               geom="line", fun="mean", color="black", size=1.2)+
-  stat_summary(data=co2_line_graph %>% filter(year==2018),
-               aes(x=2019, y=co2, color="mean"), label="Average CO2",
-               geom="text", fun="mean", color="black", size=3)+
-  scale_x_continuous(breaks=seq(2006,2018,2))+
-  coord_cartesian(clip="off")+
-  scale_color_manual(values=dscale)+
-  theme(legend.position = "none",
-        panel.background = element_blank())
-  
+**Time**. The time metric includes the years 2006, 2009, 2012, 2015, and 2018, which reflects the triennial assessment cycles of the PISA. For meaningful interpretation of results, assessment cycle is included as a continuous measurement from 0 to 4, with 0 (and thus the intercept) representing the 2006 cycle [@grimm2017]. 
+
+\newpage
+<!---BLOCK_LANDSCAPE_START--->
+
+```{r co2overtime, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="CO~2~ emissions per capita over time by region. Each black line represents an individual country. The orange line represents the mean CO~2~ emissions per capita. This line is the same in each panel.", fig.height=5.5, fig.width=7.8}
+
+# co2_line_graph <- all_data %>% select(un_sub_region, country, year, co2) %>%
+#   group_by(un_sub_region, country) %>%
+#   mutate(mean = mean(co2, na.rm=T)) %>%
+#   ungroup() %>%
+#   mutate(region = case_when(
+#            un_sub_region == "Australia/New Zealand" ~ "Western Nations",
+#            un_sub_region == "Western Europe" ~ "Western Nations",
+#            un_sub_region == "Northern Europe" ~ "Western Nations",
+#            un_sub_region == "Northern America" ~ "Western Nations",
+#            un_sub_region == "Central America" ~ "Latin America/Caribbean/Other",
+#            un_sub_region == "South America" ~ "Latin America/Caribbean/Other",
+#            un_sub_region == "Caribbean" ~ "Latin America/Caribbean/Other",
+#            un_sub_region == "Eastern Africa" ~ "Latin America/Caribbean/Other",
+#            un_sub_region == "Western Asia" ~ "Middle East and North Africa",
+#            un_sub_region == "Northern Africa" ~ "Middle East and North Africa",
+#            TRUE~un_sub_region
+#          )) %>%
+#   mutate(rank = rank(-mean),
+#          top = ifelse(rank <= 25, country, NA),
+#          highlight = ifelse(is.na(top), NA, co2)) %>%
+#   group_by(year) %>%
+#   mutate(mean = mean(co2))
+# 
+# 
+# 
+#  co2overtime <- co2_line_graph %>%
+#   ggplot(aes(x=year, y=co2))+
+#   facet_wrap(~region, ncol=4)+
+#   geom_line(aes(group=country), size=.5)+
+#   geom_line(aes(y=mean), color="#FF8200", size=.8)+
+#    ylab("CO2 Per\n Capita")+
+#    xlab("Year")+
+#   theme(panel.background = element_blank(),
+#         strip.background = element_blank(),
+#         strip.text = element_text(face="bold"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         axis.ticks = element_blank(),
+#         axis.title.y = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.x = element_text(face="italic"))
+#  
+#  ggsave(co2overtime, file="figures/co2overtime.jpg", width=10, height=7)
+ knitr::include_graphics("figures/co2overtime.jpg")
+```
+<!---BLOCK_LANDSCAPE_STOP--->
+
+
+
+
+```{r pisascores, echo=FALSE, fig.cap="Overall Scientific Literacy score by country, colored by year", fig.width=6, fig.height=9}
+# pisascores <- model_data %>%
+#   ggplot(aes(y=reorder(country, sl_total),
+#              x=sl_total,
+#              color=as.factor(year)))+
+#   geom_point(size=3)+
+#   xlab("PISA Scientific Literacy Score")+
+#   ylab(NULL)+
+#   scale_x_continuous(breaks = seq(300, 600, 50))+
+#   theme(panel.background = element_blank(),
+#         axis.ticks = element_blank(),
+#         axis.title.x = element_text(size=10),
+#         panel.grid.major.x = element_line(color="grey80"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         legend.position = "top",
+#         legend.background = element_blank(),
+#         legend.key = element_blank())+
+#   scale_color_manual(values=c(
+#     "#FED535", "#ABC178", "#8D2048", "#2197A9", "#FF8200"
+#   ), name="Year")
+
+# ggsave(pisascores, file="figures/pisascores.jpg", width=6, height=9)
+knitr::include_graphics("figures/pisascores.jpg")
 ```
 
-
-**Independent Variable**. The main independent variable of interest will be PISA scientific literacy scores estimated as described in Phase One. For each assessment cycle, individual countries will have a scientific literacy score for all students combined, and separate scores for males and females. Country-mean centering, along with including the country mean at level-2, will be used to estimate the pure within- and between-country effects. A level-1 variable of within-country scientific literacy will be estimated as the difference between an assessment cycle and the level-2 country mean, $SL_{within}=sl_{ti}-\bar{sl_i}$. A level-2 variable representing the mean scientific literacy score across measurement cycles will be estimated as $SL_{between}=\bar{sl_i}-500$, where 500 represents the OECD average that PISA scores are standardized to. Thus, the intercept will refer to average CO~2~ emissions for a country with an average scientific literacy score. Appendix A, \@ref(tab:sltable) shows detailed information on total, female, and male scientific literacy score per country and cycle as well as the number of students who participated in each cycle. \@ref(fig:pisascores) displays all countries and their overall PISA scientific literacy score for each year.
-
-```{r pisascores, fig.cap="Overall Scientific Literacy Score by Country"}
-model_data %>%
-  ggplot(aes(y=reorder(country, sl_total),
-             x=sl_total,
-             color=as.factor(year)))+
-  geom_point()+
-  xlab("PISA Scientific Literacy Score")+
-  ylab(NULL)+
-  scale_x_continuous(breaks = seq(300, 600, 50))+
-  theme(panel.background = element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid.major.x = element_line(color="grey80"),
-        panel.grid.major.y = element_line(color="grey90"),
-        legend.position = "top",
-        legend.background = element_blank(),
-        legend.key = element_blank())+
-  scale_color_manual(values=c(
-    "#FED535", "#ABC178", "#8D2048", "#2197A9", "#FF8200"
-  ), name="Year")
-```
+\newpage
 
 
-
-**Time**. The time metric represents the triennial assessment cycles of the PISA, representing the years 2006, 2009, 2012, 2015, 2018. However, for meaningful interpretation of results, assessment cycle is included as a discrete measurement from 0 to 4, with 0 (and thus the intercept) representing the 2006 cycle [@grimm2017]. 
 
 ### Time-Varying (Level-1) Covariates
 
 In order to isolate the effects of education on CO~2~ emissions, control variables are included to account for structural forces that have been found to contribute to climate change.
 
-**Population**. Population is a key variable of the *IPAT* formula and a major factor in emissions. Data comes from the World Bank. Data for Taiwan is based on mid-year (June) estimates provided by the Taiwan National Statistics Office^[https://eng.stat.gov.tw/point.asp?index=9] [@republicofchinataiwan]. Population data is scaled by 10 million and mean-centered. The intercept represents a country with average population.
+**Population**. Population is a key variable of the *IPAT* formula and a major factor in emissions. All population data comes from the World Bank. Data for Taiwan is based on mid-year (June) estimates provided by the Taiwan National Statistics Office^[https://eng.stat.gov.tw/point.asp?index=9] [@republicofchinataiwan]. Population data is scaled by 10 million and grand mean-centered. The intercept represents a country with average population.
 
-```{r}
-all_data %>%
-  ggplot(aes(x=pop, y=co2_lag, color=oecd))+
-  geom_point()
+**GDP-PPP Per Capita**. Gross domestic product (purchasing-power parity) per capita is used to control for the positive relationship between economic growth, education, and emissions. This data comes from the World Bank and is presented in 2015 US dollars. GDP per capita data for Taiwan is missing from the World Bank. Therefore, data from the Taiwanese government's National Statistics office is used in its place [@republicofchinataiwan]. This data is in US dollars (no date available). All GDP per capita data is time-varying. It is scaled by $10,000 dollars and grand-mean centered, with the intercept being interpreted as a country with average GDP per capita.
+
+\newpage
+
+```{r pop, fig.cap="A scatterplot of CO~2~ emissions per capita and population, colored by OECD.", fig.width=4.5, fig.height=3.6}
+
+# fig_pop <- all_data %>%
+#   ggplot(aes(x=pop, y=co2_lag, color=oecd))+
+#   geom_point()+
+#   scale_color_manual(values=c("#EE3E80", "#2197A9"), name=NULL)+
+#   ylab("CO2")+
+#   xlab("Population")+
+#   theme(panel.background = element_blank(),
+#         axis.ticks = element_blank(),
+#         panel.grid.major.x = element_line(color="grey80"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         legend.position = "top",
+#         legend.background = element_blank(),
+#         axis.title.y = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.x = element_text(face="italic"),
+#         legend.key = element_blank())
+# 
+# ggsave(fig_pop,file="figures/fig_pop.jpg", width=5, height=4)
+
+knitr::include_graphics("figures/fig_pop.jpg")
+
+```
+
+\newline
+\newline
+
+
+```{r gdp, fig.cap="A scatterplot of CO~2~ emissions per capita and GDP per capita, colored by OECD.", fig.width=4.5, fig.height=3.6}
+# fig_gdp <- all_data %>%
+#   ggplot(aes(x=gdp, y=co2_lag, color=oecd))+
+#   geom_point()+
+#   scale_color_manual(values=c("#EE3E80", "#2197A9"), name=NULL)+
+#   ylab("CO2")+
+#   xlab("GDP Per Capita")+
+#   theme(panel.background = element_blank(),
+#         axis.ticks = element_blank(),
+#         panel.grid.major.x = element_line(color="grey80"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         legend.position = "top",
+#         legend.background = element_blank(),
+#         axis.title.y = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.x = element_text(face="italic"),
+#         legend.key = element_blank())
+# 
+# ggsave(fig_gdp,file="figures/fig_gdp.jpg", width=5, height=4)
+
+knitr::include_graphics("figures/fig_gdp.jpg")
+```
+
+\newpage
+
+**Exports and Manufacturing as a Percentage of GDP**. Separate variables for exports as a percentage of GDP and manufacturing as a percentage of GDP serve as additional statistical controls for structural forces of carbon emissions. In particular, they are included as an attempt to control for the offloading of emission-intensive labor to less developed countries [@jorgenson2013; @jorgenson2018; @liobikiene2018] This data comes from the World Bank. These time-varying variables will be grand-mean centered, with the intercept being interpreted as a country with average exports and manufacturing as a percentage of GDP.
+
+**Gini**. The Gini coefficient is used to measure wealth inequality, as inequality has a positive relationship with emissions where greater inequality is often associated with higher emissions [@jorgenson2017; @jorgenson2018]. The Gini coefficient is measured on a scale from 0 (perfect equality) to 1 (maximal inequality). Data comes from the Standardized World Income Inequality Database [SWIID version 9.2; @solt2020]. It provides a standardized and globally comprehensive Gini coefficient that is comparable across time and countries. Time-varying Gini coefficients are grand-mean centered, indicating a country with average wealth inequality.
+
+\newpage
+
+```{r mfg, fig.cap="A scatterplot of CO~2~ emissions per capita and exports/manufacturing as a percentage of GDP, colored by OECD.", fig.width=4.58, fig.height=3.6}
+# fig_exports <- 
+#   all_data %>%
+#   pivot_longer(c(mfg, exports)) %>%
+#   mutate(name = ifelse(name == "mfg",
+#                        "Manufacturing\nas a % of GDP",
+#                        "Exports\nas a % of GDP")) %>%
+#   ggplot(aes(x=value, y=co2_lag, color=oecd))+
+#   facet_wrap(~name,
+#              strip.position="bottom")+
+#   geom_point()+
+#   scale_color_manual(values=c("#EE3E80", "#2197A9"), name=NULL)+
+#   ylab("CO2")+
+#   xlab(NULL)+
+#   scale_y_continuous(sec.axis = dup_axis())+
+#   theme(panel.background = element_blank(),
+#         axis.ticks = element_blank(),
+#         panel.grid.major.x = element_line(color="grey80"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         legend.position = "top",
+#         legend.background = element_blank(),
+#         strip.background = element_blank(),
+#         strip.text = element_text(face="bold"),
+#         axis.title.y = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.y.right = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.x = element_text(face="italic"),
+#         strip.placement = "outside",
+#         panel.spacing = unit(3, "lines"),
+#         legend.key = element_blank())
+# 
+# ggsave(fig_exports,file="figures/fig_exports.jpg", width=5, height=4)
+
+knitr::include_graphics("figures/fig_exports.jpg")
 ```
 
 
-**GDP-PPP Per Capita**. Gross domestic product (purchasing-power parity) per capita is used to control for the positive relationship between economic growth, education, and emissions. This data comes from the World Bank and is presented in 2015 US dollars. GDP per capita data for Taiwan is missing from the World Bank. Instead, data from the Taiwanese government's National Statistics office is used [@republicofchinataiwan]. This data is in US dollars (no date available). All GDP per capita data is time-varying. It is scaled by $10,000 dollars and grand-mean centered, with the intercept being interpreted for a country with average GDP per capita.
+\newline
+\newline
 
-```{r}
-all_data %>%
-  ggplot(aes(x=gdp, y=co2_lag, color=oecd))+
-  geom_point()
+```{r gini, fig.cap="A scatterplot of CO~2~ emissions per capita and Gini coefficients, colored by OECD.", fig.width=4.58, fig.height=3.6}
+# fig_gini <- all_data %>%
+#   ggplot(aes(x=gini, y=co2_lag, color=oecd))+
+#   geom_point()+
+#   scale_color_manual(values=c("#EE3E80", "#2197A9"), name=NULL)+
+#   ylab("CO2")+
+#   xlab("Gini Coefficient")+
+#   theme(panel.background = element_blank(),
+#         axis.ticks = element_blank(),
+#         panel.grid.major.x = element_line(color="grey80"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         legend.position = "top",
+#         legend.background = element_blank(),
+#         axis.title.y = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.x = element_text(face="italic"),
+#         legend.key = element_blank())
+# 
+# ggsave(fig_gini,file="figures/fig_gini.jpg", width=5, height=4)
+
+knitr::include_graphics("figures/fig_gini.jpg")
 ```
 
+\newpage
+
+**Left-Right Political Ideology**. As the literature review highlighted, political ideology has a major influence on climate change beliefs, which can, in turn, affect voting behaviors, policy support, and pro-environemntal behaviors. All of these have the potential to affect carbon emissions. Thus, a measure of political ideology is included in the analysis. Following Czarnek et al.'s [-@czarnekRightwingIdeologyReduces2021] methods, data from the Integrated Values Survey (an integration of the European Values Survey and the World Values Survey) is used as a measure of ideology. For their analyses, @czarnekRightwingIdeologyReduces2021 used a single question that asked respondents to place themselves on the left-right scale. However, left-right scale placement questions may not be interpreted the same across countries and cultures [@zuell2019]. @czarnekRightwingIdeologyReduces2021 also constructed a scale on a group of questions related to cultural or economic values that could represent the left-right scale. However, no factor analysis was conducted to assess whether the chosen questions represented the same underlying construct. 
+
+  In order to include a more valid left-right ideology index, the current research builds upon this past work. Eleven questions from the IVS were chosen that closely relate to political ideology, including questions selected by @czarnekRightwingIdeologyReduces2021. A series of factor analyses suggested that three questions loaded highly on a single factor that could represent left-right placement (see Appendix B for the details of this analysis). These questions reflect beliefs about homosexuality, abortion, and women's right to work. A factor score was constructed by first placing the individual items on a 0-1 scale following Czarnek et al.'s [-@czarnekRightwingIdeologyReduces2021] methods^[Their code may be found at https://osf.io/6ebna/], averaging across these questions to get each respondent's placement on the left-right scale. For the final data set, the mean of individuals per country per survey wave is calculated. The Values surveys gather responses from a country during a single year within multi-year waves. Therefore, there is missing data on years not surveyed during a particular wave. Missing data during a wave is filled based on the observation within that wave. For example, the value for a country surveyed in 2011 is applied for all years within the 2010-2014 wave. Their 2016 value would be used for the 2015-2019 wave, and so on. Finally, this variable is grand-mean centered, with the intercept referring to a country with average left-right ideology.
 
 
-**Exports and Manufacturing as a Percentage of GDP**. Separate variables for exports as a percentage of GDP and manufacturing as a percentage of GDP serve as additional statistical controls for structural forces of carbon emissions. In particular, they are included as an attempt to control for the offloading of emission-intensive labor to less developed countries [@jorgenson2013; @jorgenson2018; @liobikiene2018] This data comes from the World Bank. This time-varying variable will be grand-mean centered, with the intercept being interpreted for a country with average exports and manufacturing as a percentage of GDP.
-
-```{r}
-all_data %>%
-  ggplot(aes(x=exports, y=co2_lag, color=oecd))+
-  geom_point()
-```
-
-```{r}
-all_data %>%
-  ggplot(aes(x=mfg, y=co2_lag, color=oecd))+
-  geom_point()
-```
-
-
-**Gini**. The Gini coefficient will be used to measure wealth inequality, as inequality has been demonstrated to relate to emissions [e.g., @jorgenson2017; @jorgenson2018]. The Gini coefficient is measured on a scale from 0 (perfect equality) to 1 (maximal inequality). Data comes from the Standardized World Income Inequality Database [SWIID version 9.2; @solt2020]. The SWIID is based on the Gini and similar measures. It provides a standardized and complete measure that is comparable across time and countries. Time-varying Gini coefficients are grand-mean centered, indicating a country with average wealth inequality.
-
-```{r}
-all_data %>%
-  ggplot(aes(x=gini, y=co2_lag, color=oecd))+
-  geom_point()
-```
-
-**Left-Right Political Ideology**. One of the largest influences on climate change beliefs is political ideology. Following Czarnek et al.'s [-@czarnekRightwingIdeologyReduces2021] methods, data from the Integrated Values Survey (an integration of the European Values Survey and the World Values Survey) is used as a measure of ideology. For their analyses, @czarnekRightwingIdeologyReduces2021 used a question that asked respondents to place themselves on the left-right scale. However, left-right scale placement questions may not be interpreted the same across countries and cultures [@zuell2019]. @czarnekRightwingIdeologyReduces2021 also constructed a scale on group of questions related to cultural or economic values that could represent the left-right scale. However, no factor analysis or correlational analysis was conducted to indicate the chosen questions represented the same underlying construct.
-  For this research, eleven questions from the IVS were chosen, including questions selected by @czarnekRightwingIdeologyReduces2021. A series of factor analyses suggested that three questions loaded highly on a single factor that could represent left-right placement (see Appendix B). These questions reflected beliefs about homosexuality, abortion, and women's right to work. A scale score was constructed by averaging across these questions to get each respondent's placement on the left-right scale. After scaling the variable, the mean of individuals per country per wave is calculated. The Values surveys gather responses from a country during a single year within multi-year waves. Therefore, there is missing data on years not surveyed during a particular wave. Missing data during a wave is filled based on the observation within that wave. For example, the value from 2011 is applied for all years within the 2010-2014 wave.
-
-```{r}
-all_data %>%
-  ggplot(aes(x=left_right_fa, y=co2_lag, color=oecd))+
-  geom_point()
-```
-
-
-
-**Democracy Index**. A democracy index score from the Varieties of Democracies (V-Dem) Project [@mm2021; @VDemV11] is included to control for political effects on carbon emissions [@povitkina2018]. Specifically, the data uses V-Dem's electoral democracy index (polyarchy). This measure is seen as "an essential element of any other conception of representative democracy" [@Vdemcodebook2021, p. 43] and thus the best underlying measure of democracy [@boese2019]. The index ranges from 0 to 1, low (or no) to high electoral democracy. Data is be grand-mean centered, with the intercept referring to a country with an average democracy score.
-
-```{r}
-all_data %>%
-  ggplot(aes(x=democracy, y=co2_lag, color=oecd))+
-  geom_point()
-```
-
+**Democracy Index**. A democracy index score from the Varieties of Democracies (V-Dem) Project [@mm2021; @VDemV11] is included to control for political effects on carbon emissions [@povitkina2018]. Specifically, the data uses V-Dem's electoral democracy index (polyarchy). This measure is seen as "an essential element of any other conception of representative democracy" [@Vdemcodebook2021, p. 43] and thus the best underlying measure of democracy [@boese2019]. The index ranges from 0 to 1, indicating a range of low (or no) to high electoral democracy. Data is grand-mean centered, with the intercept referring to a country with an average democracy score.
 
 **Political Corruption Index**. The Political Corruption Index also comes from the V-Dem Project and was cited as an influential variable in understanding the extent to which a government may influence emissions [@povitkina2018]. This data is also time-varying and grand-mean centered.
 
-```{r}
-all_data %>%
-  ggplot(aes(x=corruption, y=co2_lag, color=oecd))+
-  geom_point()
+**Net Enrollment in Secondary Education**. Net enrollment of secondary students refers to the ratio of secondary students enrolled to the population of secondary school-aged children. This data comes from both the World Bank and the PISA Coverage Index 3. The Coverage Index 3 refers to the percentage of the 15-year-old population within a country that is assessed by the PISA exam. Lower rates indicate a lower percentage of the population is enrolled in school [@gamboa2015]. Because both sources of net enrollment have extensive missing data (30% or higher), and because they are similar in definition and share a high correlation (*r* = .72, averaged across years), missing data from the PISA coverage index was replaced with World Bank net enrollment data. This provides a more complete data set with only 10% missing data. This time-varying variable is grand-mean centered, referring to countries with average net enrollment.
+
+**OECD**. Past research has used various indicators to model or control for effects of a country's development status [e.g., @czarnekRightwingIdeologyReduces2021; @kelly2020; @lee2020; @mcgee2020]. Countries that are members of the OECD are typically more developed, higher-income countries in the Global North [@oecdlist]. The PISA designates countries as OECD countries or as partner countries in order to represent their development status within their models and results [@bloem2013]. Thus, OECD status in this research serves as a key measure of development. This variable indicates whether a country is a member of the OECD  or not, as classified by the PISA. For a majority of countries included over this 12-year period, OECD has been time-invariant. However, several countries became OECD members during this period, especially in 2010. Therefore, OECD status is treated as time-varying. \@ref(tab:sltable) in Appendix A lists each country's OECD status.
+
+\newpage
+
+
+```{r lr, fig.cap="A scatterplot of CO~2~ emissions per capita and Left-Right Orientation, colored by OECD.", fig.width=4.58, fig.height=3.6}
+
+# fig_lr <- all_data %>%
+#   ggplot(aes(x=left_right_fa_scaled, y=co2_lag, color=oecd))+
+#   geom_point()+
+#   scale_color_manual(values=c("#EE3E80", "#2197A9"), name=NULL)+
+#   ylab("CO2")+
+#   xlab("Left-Right Orientation")+
+#   scale_x_continuous(limits=c(0,1), breaks=seq(0,1,.25))+
+#   geom_vline(xintercept = .5, color="black")+
+#   geom_text(aes(x=.7, y=45, label="More Right \U2192"), color="black", check_overlap = T)+
+#   geom_text(aes(x=.3, y=45, label="\U2190 More Left"), color="black", check_overlap = T)+
+#   theme(panel.background = element_blank(),
+#         axis.ticks = element_blank(),
+#         panel.grid.major.x = element_line(color="grey80"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         legend.position = "top",
+#         legend.background = element_blank(),
+#         axis.title.y = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.x = element_text(face="italic"),
+#         legend.key = element_blank())
+
+# ggsave(fig_lr,file="figures/fig_lr.jpg", width=5, height=4)
+
+knitr::include_graphics("figures/fig_lr.jpg")
 ```
 
-**Net Enrollment in Secondary Education**. Net enrollment of secondary students refers to the ratio of secondary students enrolled to the population of secondary school-aged children. This data comes from both the World Bank and the PISA Coverage Index 3. The coverage index 3 represents the percentage of the 15-year-old population covered by the PISA exam. Lower rates indicate a lower percentage of the population is enrolled in school [@gamboa2015]. Because both sources of net enrollment have extensive misisng data (30% or higher), and because they are similar in definition and share a high correlation averaged across years (*r* = .72), missing data from the PISA coverage index was replaced with World Bank net enrollment data. This provides a more complete data set with only 18% missing data. The remaining data is imputed. This time-varying variable is grand-mean centered, referring to countries with average net enrollment.
+\newline
+\newline
 
-```{r}
-all_data %>%
-  ggplot(aes(x=net_enrollment_corrected, y=co2_lag, color=oecd))+
-  geom_point()
+```{r demo, fig.cap="A scatterplot of CO~2~ emissions per capita and Democracy Index, colored by OECD.", fig.width=4.58, fig.height=3.6}
+# fig_demo <- all_data %>%
+#   ggplot(aes(x=democracy, y=co2_lag, color=oecd))+
+#   geom_point()+
+#   scale_color_manual(values=c("#EE3E80", "#2197A9"), name=NULL)+
+#   ylab("CO2")+
+#   xlab("Democracy Index")+
+#   scale_x_continuous(limits=c(0,1), breaks=seq(0,1,.25))+
+#   geom_vline(xintercept = .5, color="black")+
+#   geom_text(aes(x=.7, y=45, label="More Democratic \U2192"), color="black", check_overlap = T)+
+#   geom_text(aes(x=.3, y=45, label="\U2190 Less Democratic"), color="black", check_overlap = T)+
+#   theme(panel.background = element_blank(),
+#         axis.ticks = element_blank(),
+#         panel.grid.major.x = element_line(color="grey80"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         legend.position = "top",
+#         legend.background = element_blank(),
+#         axis.title.y = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.x = element_text(face="italic"),
+#         legend.key = element_blank())
+
+#ggsave(fig_demo,file="figures/fig_demo.jpg", width=5, height=4)
+
+knitr::include_graphics("figures/fig_demo.jpg")
 ```
 
-**OECD**. Past research has used various indicators to model or control for effects of a country's development status [e.g., @czarnekRightwingIdeologyReduces2021; @kelly2020; @lee2020; @mcgee2020]. Countries that are members of the OECD are typically more developed, higher income countries in the Global North [@oecdlist]. The PISA designates countries as OECD countries or partner countries to represent their development status [@bloem2013]. Thus OECD status will serve as a measure of development. This variable will indicate whether a country is a member of the OECD (the reference group) or not, as classified by the PISA. For a majority of countries included over this 12-year period, OECD has been time-invariant. However, several countries became OECD members during this period, especially in 2010. Therefore, OECD status is treated as time-varying. OECD countries will serve as the reference group for this variable. \@ref(tab:sltable) in Appendix A lists each country's OECD status.
+\newpage
+
+```{r corrup, fig.cap="A scatterplot of CO~2~ emissions per capita and Political Corruption Index, colored by OECD.", fig.width=4.58, fig.height=3.6}
+# fig_corrup <- all_data %>%
+#   ggplot(aes(x=corruption, y=co2_lag, color=oecd))+
+#   geom_point()+
+#   scale_color_manual(values=c("#EE3E80", "#2197A9"), name=NULL)+
+#   ylab("CO2")+
+#   xlab("Political Corruption Index")+
+#   scale_x_continuous(limits=c(0,1), breaks=seq(0,1,.25))+
+#   geom_vline(xintercept = .5, color="black")+
+#   geom_text(aes(x=.7, y=45, label="More Corrupt \U2192"), color="black", check_overlap = T)+
+#   geom_text(aes(x=.3, y=45, label="\U2190 Less Corrupt"), color="black", check_overlap = T)+
+#   theme(panel.background = element_blank(),
+#         axis.ticks = element_blank(),
+#         panel.grid.major.x = element_line(color="grey80"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         legend.position = "top",
+#         legend.background = element_blank(),
+#         axis.title.y = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.x = element_text(face="italic"),
+#         legend.key = element_blank())
+# 
+# ggsave(fig_corrup,file="figures/fig_corrup.jpg", width=5, height=4)
+
+knitr::include_graphics("figures/fig_corrup.jpg")
+```
+
+\newline
+\newline
+
+```{r net, fig.cap="A scatterplot of CO~2~ emissions per capita and net enrollment in secondary education, colored by OECD.", fig.width=4.58, fig.height=3.6}
+# fig_net <- all_data %>%
+#   ggplot(aes(x=net_enrollment_corrected, y=co2_lag, color=oecd))+
+#   geom_point()+
+#   scale_color_manual(values=c("#EE3E80", "#2197A9"), name=NULL)+
+#   ylab("CO2")+
+#   xlab("Net Enrollment in Secondary Education")+
+#   theme(panel.background = element_blank(),
+#         axis.ticks = element_blank(),
+#         panel.grid.major.x = element_line(color="grey80"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         legend.position = "top",
+#         legend.background = element_blank(),
+#         axis.title.y = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.x = element_text(face="italic"),
+#         legend.key = element_blank())
+# 
+# ggsave(fig_net,file="figures/fig_net.jpg", width=5, height=4)
+
+knitr::include_graphics("figures/fig_net.jpg")
+```
+
+\newpage
 
 ### Time-Invariant (Level-2) Variables
 
-**Country**. In total, 98 countries have participated in the PISA at least once since 2006, 65 have participated at least three times, and 51 have participated in all five assessment cycles being analyzed. @hox2018 recommends keeping all cases with missing data, as this data can still contribute to the multilevel analysis (p. 97). However, countries will be removed if they are missing data on the dependent variable. Of the 98 countries, 86 have CO~2~ data and will be retained for the model^[Liechtenstein was removed from the analysis due to missing data for most World Bank-derived variables]. The complete list of countries is available in Appendix A, \@ref(tab:sltable).
+**Country**. In total, 98 countries have participated in the PISA at least once since 2006, 65 have participated at least three times, and 51 have participated in all five assessment cycles being analyzed. @hox2018 recommend keeping all cases with missing data, as this data can still contribute to the multilevel analysis (p. 97). Maximum effort has been taken to ensure as much complete data as possible is included in this analysis. The data set for this analysis is long, with each row representing a country within a particular year. If a country is missing data on the dependent variable, it  will be removed for that year only. Countries are retained whether or not they are missing data on the independent variables. A total of 82 countries are retained for the models^[Liechtenstein was removed from the analysis due to missing data for most World Bank-derived variables]. The complete list of countries is available in Appendix A, \@ref(tab:sltable).
 
 
-**Collectivism-Individualism**. Previous research indicates ideology and worldview plays an important role in influencing a number of climate-change related issues: beliefs, behaviors, mitigation, and emissions [@czarnekRightwingIdeologyReduces2021; @dietz2007a; @hornsey2016; @guy2014; @kahan2013]. While this research covers many permutations of ideology and worldview, most can be categorized as a continuum with the terms left, liberal, egalitarian, communitarian, collectivist on one end and right, conservative, hierarchical, individualist on the other. Because these beliefs exist at the individual level, valid national profiles of ideology are few. 
+**Collectivism-Individualism**. Previous research indicates ideology and worldview play an important role in influencing a number of climate-change-related issues: beliefs, behaviors, mitigation, and emissions [@czarnekRightwingIdeologyReduces2021; @dietz2007a; @hornsey2016; @guy2014; @kahan2013]. While this research covers many permutations of ideology and worldview, most can be categorized as a continuum with the terms left, liberal, egalitarian, communitarian, collectivist on one end and right, conservative, hierarchical, individualist on the other. While similar to the left-right political ideology scale, the Collectivism-Individualism scale serves as a stable measure of a nation's worldview beyond politics.
 
-Hofstede's cultural dimensions serve as a potential measure at this level. These dimensions form a framework for understanding cultural values. Of the six dimensions^[These dimensions include: power distance, individualism vs. collectivism, uncertainty avoidance, masculinity vs. femininity, long-term vs. short-term orientation, and indulgence vs. restraint], the individualism-collectivism continuum has been found to relate the most with climate change, with those with more individualism having higher skepticism [@pelham2018], less concern [@shi2015], and less likely to adapt to natural hazards [@noll2020]. Given the above, data for national individualism-collectivism will be used to control for worldview. Though Hofstede’s data [@hofstede2015] is a popular source, it is outdated (collected between the 1960s and 1970s) and its validity is lacking [@blodgett2008; @gerlach2021]. A more recent dataset synthesizing Hofstede’s dimensions with others’ and validated using the World and European Values Surveys will be used [@beugelsdijk2018]. The measure ranges from 0 to 100, with 0 being a completely collectivist society and 100 being a completely individualist society. Missing data for Macao will be based on data for China. Missing data for Costa Rica, Israel, Luxembourg, and Panama will be based on the collectivism-individualism index from the Hofstede 2015 data matrix [@hofstede2015]. Data for Brunei, Liechtenstein, Mauritius, and the United Arab Emirates will be imputed. Final data will be grand mean-centered, with the intercept reflecting a country with average individualism-collectivism. Because this data is cross-sectional, it is considered time-invariant.
+Hofstede's cultural dimensions serve as a potential measure at this level. These dimensions form a framework for understanding cultural values. Of the six dimensions^[These dimensions include: power distance, individualism vs. collectivism, uncertainty avoidance, masculinity vs. femininity, long-term vs. short-term orientation, and indulgence vs. restraint], the individualism-collectivism continuum has been found to relate the most with climate change, with those with more individualism having higher skepticism [@pelham2018], less concern [@shi2015], and less likely to adapt to natural hazards [@noll2020]. Given the above, data for national individualism-collectivism will be used to control for worldview. Though Hofstede’s data [@hofstede2015] is a popular source, it is outdated (collected between the 1960s and 1970s) and its validity is lacking [@blodgett2008; @gerlach2021]. A more recent dataset synthesizing Hofstede’s dimensions with others’ and validated using the World and European Values Surveys is used for this dissertation [@beugelsdijk2018]. The measure ranges from 0 to 100, with 0 being a completely collectivist society and 100 being a completely individualist society. Missing data for several countries (Costa Rica, Israel, Luxembourg, and Panama) is based on the collectivism-individualism index from the Hofstede 2015 data matrix [@hofstede2015]. Missing data for other countries is imputed. Final data will be grand mean-centered, with the intercept reflecting a country with average individualism-collectivism. Because this data is cross-sectional, it is considered time-invariant.
 
-```{r}
-all_data %>%
-  ggplot(aes(x=collectivism_individualism, y=co2_lag, color=oecd))+
-  geom_point()
+\newpage
+
+```{r coll, fig.cap="A scatterplot of CO~2~ emissions per capita and collectivism-individualism, colored by OECD.", fig.width=4.58, fig.height=3.6}
+# fig_coll <- all_data %>%
+#   filter(year == 2006) %>%
+#   ggplot(aes(x=collectivism_individualism, y=co2_lag, color=oecd))+
+#   geom_point()+
+#   scale_color_manual(values=c("#EE3E80", "#2197A9"), name=NULL)+
+#   ylab("CO2")+
+#   xlab("Collectivism-Individualism")+
+#   scale_x_continuous(limits=c(0,1), breaks=seq(0,1,.25))+
+#   geom_vline(xintercept = .5, color="black")+
+#   geom_text(aes(x=.7, y=45, label="More Individualist \U2192"), color="black", check_overlap = T)+
+#   geom_text(aes(x=.3, y=45, label="\U2190 More Collectivist"), color="black", check_overlap = T)+
+#   theme(panel.background = element_blank(),
+#         axis.ticks = element_blank(),
+#         panel.grid.major.x = element_line(color="grey80"),
+#         panel.grid.major.y = element_line(color="grey90"),
+#         legend.position = "top",
+#         legend.background = element_blank(),
+#         axis.title.y = element_text(angle=0, vjust=.5, face="italic"),
+#         axis.title.x = element_text(face="italic"),
+#         legend.key = element_blank())
+#  
+# ggsave(fig_coll,file="figures/fig_coll.jpg", width=5, height=4)
+
+knitr::include_graphics("figures/fig_coll.jpg")
 ```
 
+\newpage
 
-**Region**. There is the possibility that countries located near each other may exhibit similar patterns in terms of either CO~2~ emissions or scientific literacy scores. This may be due to shared culture, language, economic or education systems. To control for this potential neighbor influence, UN Sustainable Development Goal regional groupings are included in the model [@unregions]. Each country's region is indicated in \@ref(tab:sltable) in Appendix A.
-
-
-```{r}
-all_data %>%
-  ggplot(aes(x=year, y=co2_lag, color=oecd))+
-  stat_summary(geom="smooth", fun="mean")+
-  facet_wrap(~sdg_region, scales = "free_y")
-```
+**Region**. There is the possibility that countries located near each other may exhibit similar patterns in terms of either CO~2~ emissions or scientific literacy scores. This may be due to shared culture, language, economic, or education systems. To control for this potential neighbor influence, countries are grouped into UN sub regions [@unregions]. Each country's region is indicated in \@ref(tab:sltable) in Appendix A.
 
 
-```{r vardesc, tab.cap = "Descriptive Statistics for All Data", echo=FALSE, message=FALSE, warning=FALSE}
+## Descriptive Statistics for Variables
+
+
+\@ref(tab:vardesc) shows key descriptive statistics for each variable selected for this dissertation. Statistics are calculated based on un-centered values in their original metrics. As indicated in the histogram column, most data is right- or left-skewed or otherwise non-normal in appearance. This is not an issue, as the normal distribution of data is not an assumption of multilevel models. Therefore, no further transformations of the data are necessary. 
+
+
+Correlation matrices were estimated separately per year and then averaged. Figure \@ref(fig:allcor) shows a correlation plot for all continuous variables. Circles are depicted in the upper triangle of the correlation plot. Both the darkness of the color and size of the circle indicate the strength of the correlation. Purples indicate a positive correlation whereas browns indicate a negative correlation. Correlation values are indicated in the lower triangle.
+
+CO~2~ per capita shows a small correlation (.15) with scientific literacy. It has a moderate correlation with GDP (.55) and small to moderate correlations with Gini (-.21) and corruption (-.29). The largest correlations occur among covariates. Several variables show moderate to high correlations. For example, collectivism-individualism shows a high negative correlation with left-right orientation and moderate to high correlations with corruption, democracy, Gini, GDP, and scientific literacy. Corruption, democracy, and left-right orientation also indicate several moderate to high correlations. These high correlations indicate the possible presence of multicollinearity. This will be assessed in Chapter 4.
+
+\newpage
+<!---BLOCK_LANDSCAPE_START--->
+
+```{r vardesc, tab.cap = "Descriptive statistics for all data", echo=FALSE, message=FALSE, warning=FALSE}
 load("data/final data/table_figure_data.Rdata")
 
 var_summary_table %>%
   flex() %>%
-  autofit %>%
-  font(fontname = "Times New Roman", part="all")
+  autofit() %>%
+  font(fontname = "Times New Roman", part="all") %>%
+  footnote(j=1, part="header", ref_symbols="a", value = as_paragraph(
+              c("All variables in this table are in their original metric. Variable transformations are discussed in Chapters 3 and 4."))) %>%
+  fontsize(size=10, part="footer") %>%
+  ftExtra::colformat_md(j=1)
+```
+<!---BLOCK_LANDSCAPE_STOP--->
+
+
+
+```{r allcor, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="A correlation table (lower triangle) and correlation plot (upper triangle)  of all continuous variables. Correlations are averaged over time."}
+# library(corrplot)
+# fig_cor <- corrplot::corrplot.mixed(cor_data, upper = "circle",
+#                          tl.pos = "lt", lower.col = "black",
+#                          number.cex = .85, upper.col = COL2('PuOr', 10),
+#                          lower="number", tl.col = 'black')
+
+# save manually
+knitr::include_graphics("figures/fig_corr.jpeg")
 ```
 
-Figure \@ref(fig:allcor) shows a correlation plot for all continuous variables. Correlation matrices were estimated separately per year and then averaged. Several variables show moderate to high correlations. For example, corruption is correlated with scientific literacy (-.68), GDP-PPP (-.70), and democracy (-.62). Likewise, Collectivism-Individualism also shows strong correlations with scientific literacy (.61), GDP (.59), manufacturing as a percentage of GPD (-.65), left-right political orientation (.61), and democracy (-.62). 
+\newpage
 
-An OLS model was used to statistically assess multicollinearity. The results indicate some variables had somewhat high variance inflation factors (VIF), e.g., the corruption index (6.02). These VIFs provide evidence of multicollinearity, which can which can inflate standard errors. Because all VIFs are below 10, multicollinearity may not be a major problem. In addition, the highest VIFs are among control variables, which will not effect the standard error of the key independent variable [@darlington2017]. However, even scientific literacy has a moderately high VIF at 3.63. When removing corruption from the model, this VIF falls to 2.4, suggesting a decrease in the inflation of scientific literacy's standard errors would occur. As scientific literacy is the key independent variable, the corruption index was removed from further analyses.
-
-```{r allcor, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Correlations of all Continuous Variables, Averaged Over Time"}
-library(corrplot)
-corrplot::corrplot.mixed(cor_data, upper = "circle", 
-                         tl.pos = "lt", lower.col = "black",
-                         number.cex = 1, upper.col = COL2('PuOr', 10),
-                         lower="number", tl.col = 'black')
-```
-
-```{r vif, tab.cap="Variance Inflation Factors for Independent Variables"}
-load("data/final data/modeling_data.Rdata")
-
-vif_check$vif_t %>% as.data.frame() %>%
-  left_join(vif_check_wo_corruption$vif_t, by="Variables") %>%
-  select(1,3, 5) %>%
-  mutate_at(vars("VIF.x", "VIF.y"), ~round(.,3))  %>%
-  rename("VIF" = VIF.x,
-         "VIF (without corruption variable" = VIF.y) %>%
-  mutate(
-      Variables = case_when(
-        Variables == "sl_total" ~ "Scientific Literacy (All)",
-        Variables == "sl_female" ~ "Scientific Literacy (Female)",
-        Variables == "pop" ~ "Population",
-        Variables == "gdp" ~ "GDP-PPP (US$2015)",
-        Variables == "exports" ~ "Exports as % of GDP",
-        Variables == "mfg" ~ "Mfg. as % of GDP",
-        Variables == "gini" ~ "Gini",
-        Variables == "right_left" ~ "Right-Left Orientation",
-        Variables == "democracy" ~ "Democracy Index",
-        Variables == "corruption" ~ "Corruption Index",
-        Variables == "net_enrollment_corrected" ~ "Net Enrollment",
-        Variables == "collectivism_individualism" ~
-          "Collectivism-Individualism")) %>%
-  flextable() %>%
-  autofit()
-```
 
 
 ## Missing Data
 
-Missing data ranges from 2% to almost 10%. Missing data will be imputed using a joint modeling approach. Multiple imputation is considered a modern and effective method for imputing missing data for cross-sectional analyses. However, for longitudinal data, standard multiple imputation may not be sufficient. Among a variety of possible imputation methods multiple imputation by chained equations (MICE) and joint modeling (JM) produce the least biased results for data measured at regular intervals [@huque2018]. A joint modeling approach will be implemented for this dissertation, as data is measured at regular 3-year intervals. The `JointAI` package will be used to facilitate simultaneous imputation and analysis [@erler2021]. This specific approach estimates sub-models for each variable in the data, with the ability to specify unique linear or non-linear specifications to aid in the imputation of each submodel. All level-1 time-varying covariates are imputed using linear mixed models while level-2 country-level variables are imputed with a linear model. 
+Missing data ranges from 2% to almost 10%. Neither CO~2~ per capita nor scientific literacy have missing data. Most other variables are missing less than 3% of their values, which is usually not considered problematic [@garson2015]. However, Gini coefficients, left-right orientation, and net enrollment have larger percentages of missing data. Due to the presence of missing data across a number of important covariates, missing data needs to be addressed. 
 
+There are three missing data mechanisms: missing completely at random (MCAR), missing at random (MAR), and missing not at random (MNAR). Data that is MCAR simply means the probability of missing data is neither dependent on the missing value nor on any of the observed or unobserved variables. MNAR, on the other hand, can be seen as the probability of missingness being related to the missing data itself. MCAR missingness is ignorable - or "treatable" - with listwise deletion, multiple imputation, and other methods. MNAR is nonignorable and requires more data collection or extreme caution regarding interpretation. A third missing data mechanism, MAR, means that missingness is related to some of the observed variables and thus can be predicted. This is a very common type of missing data, especially since much of statistics deals with variables that are related. None of these missingness mechanisms can be empirically proven; rather, evidence must be gathered to make a strong case for one of them [@heymans2019; @schafer2002].
+
+The missing data here are considered MAR. Figure \@ref(fig:missing) shows a missing values pair plot. This graphic allows the visual inspection of patterns between complete (blue) and missing (grey) data for each combination of variables. Box plots are used for continuous variable pairs and bar charts are used for factor-continuous pairs. Based on the visual, there is a clear relationship between OECD category and missingness, as the OECD column clearly shows Non-OECD countries tend to have more missing values. Many other continuous variable pairs share similar value distributions and/or median values when comparing missing and complete data. Some, such as Gini and Democracy Index or Gini and Left-Right orientation indicate drastically different values between complete and missing data. However, as these values are moderately or highly correlated, it is likely there is an observed relationship between these variables. All of this evidence taken together strongly indicates the missingness mechanism is MAR and, thus, imputation can be safely undertaken.
+
+Typically, this is done through multiple imputation. There are a variety of approaches to missing data appropriate for cross-sectional data. However, for longitudinal data, standard imputation methods may not be sufficient. Joint modeling has been found to produce the least biased results for data measured at regular intervals [@huque2018]. Therefore, missing data will be imputed following a Bayesian joint modeling approach using the `JointAI` R package [@erler2021]. 
+
+This approach imputes values one variable at a time, starting with the variable with the least amount of missing data. To predict these values, the joint distribution of all other variables in the model is used. These additional variables are specified as predictors in a submodel specified as a linear or non-linear model. All level-1 time-varying covariates are imputed using linear mixed models while level-2 country-level variables are imputed with a linear model. These models are estimated based on Markov Chain Monte Carlo (MCMC) sampling using 10 MCMC chains with 10,000 sampling iterations each. Convergence of the imputations was assessed by examining traceplots, Gelman-Rubin criterion estimates, and Monte Carlo error. Traceplots allow visual inspection of the convergence of individual chains at each iteration. Convergence is roughly determined when chains mix and follow a similar path [@vanbuuren2018]. The Gelman-Rubin criterion assesses chain within- and between-chain variability, with values near 1 indicating convergence. The Monte Carlo error compares the Monte Carlo sampling error to the posterior sample's standard error, the ratio of which should be less than 5% [@erler2021]. The imputation using `JointAI` met all of the above criteria (see Appendix C for diagnostic information). Once imputation was assessed, imputed datasets were extracted by randomly sampling from 20 MCMC iterations and were used in subsequent analysis with `mice` [@buuren2011] and `mitml` [@grund2021] R packages.
+
+
+
+\newpage
+<!---BLOCK_LANDSCAPE_START--->
+
+```{r missing, eval=TRUE, fig.cap="A missing values pairs plot showing complete (blue) and missing (grey) data for each combination of variables.", fig.width=8.85, fig.height=5.9}
+# missing_data <- model_data %>%
+#   select(co2_lag, sl_total, oecd, pop, gdp, exports, mfg, gini, left_right_fa_scaled, democracy, net_enrollment_corrected) %>%
+#   rename(
+#     CO2 = co2_lag,
+#     `SciLit` = sl_total,
+#     OECD = oecd,
+#     Population = pop,
+#     GDP = gdp,
+#     Mfg. = mfg,
+#     Exports = exports,
+#     Gini = gini,
+#     `LeftRight` = left_right_fa_scaled,
+#     Democracy = democracy,
+#     `NetEnrol.` = net_enrollment_corrected
+#   )
+# 
+# mvp <- missing_pairs(missing_data, title="", showXAxisPlotLabels = F)
+# mvp[["xAxisLabels"]] <- c("CO2", "Sci Lit", "OECD", "Pop.", "GDP", "Exports", "Mfg.",
+#                           "Gini", "Left Right", "Democracy", "Net Enrol.")
+# mvp[["yAxisLabels"]] <- c("CO2", "Sci Lit", "OECD", "Pop.", "GDP", "Exports", "Mfg.",
+#                           "Gini", "Left Right", "Democracy", "Net Enrol.")
+# 
+# ggsave("figures/mvp.jpg", plot=mvp,
+#        width=10, height=7)
+
+knitr::include_graphics("figures/mvp.jpg")
+```
+
+<!---BLOCK_LANDSCAPE_STOP--->
 
 ## Data Analysis and Model Building
 
-Data analysis will begin with univariate data exploration, specifically data visualizations of growth over time for carbon emissions and scientific literacy. The purpose of these visualizations will be to determine whether growth in scientific literacy is linear or takes on other shapes, such as quadratic or cubic. Any non-linear patterns will be accounted for and tested in the modeling process using likelihood ratio tests. In addition, correlations between covariates will be assessed to ensure lack of multicollinearity prior to modeling. This correlation will be assessed by time (e.g., correlations for 2006, for 2009, etc.). Any highly correlated variables will be removed or modified prior to  analysis.
+All data cleaning and analyses were conducted in R using various packages. Key packages are specified throughout chapters 3 and 4. For a complete list of packages used across this dissertation, please see Appendix D. All data and code for this dissertation are available at https://github.com/acircleda/dissertation.
+
+Data analysis began with univariate data exploration, specifically data visualizations of growth over time for carbon emissions and scientific literacy. The purpose of these visualizations is to assess whether growth in scientific literacy is linear or takes on other shapes, such as quadratic or cubic. Any non-linear patterns will be accounted for and tested in the modeling process using likelihood ratio tests.
 
 
-All modeling will be done using the `lme4` R package [@bates2010]. Models will be fit using maximum likelihood (ML) estimation, which is appropriate for comparing models fit with different fixed effects [@hoffman2015, p. 294; @peugh2010]. Modeling will begin by fitting an unconditional growth model that contains only emissions and time. This will establish a baseline model from which to understand the effects of adding additional predictors. The intraclass correlation (ICC) will be assessed to determine the percentage of variation in CO~2~ between and within countries, controlling for time [@hoffman2015, p. 162]. The independent variable of scientific literacy will be added to subsequent models, first as a fixed effect and then as random and fixed effects. Likelihood ratio tests between models will be used to determine whether the addition of random slopes or non-linear time effects improve model fit. As additional predictors are added, the proportion of variance explained will be computed to determine the effects of their addition. A global pseudo-$R^2$ value will also be used to assess explantory power of the models.
+All modeling was completed using the `lme4` [@bates2010] and `lmerTest` [@kuznetsova2017] R packages. Models using imputed data have their estimates pooled following Rubin's rules using the `mitml` R package  [@grund2021]. All models are fit using maximum likelihood (ML) estimation, which is appropriate for comparing models fit with different fixed effects [@hoffman2015, p. 294; @peugh2010]. A model-building process was followed in which a baseline model is fit followed by subsequent models of increasing complexity. Each model is tested against a previous model using likelihood ratio tests to ensure proper model fit. The intraclass correlation (ICC) is calculated before adding random effects in order to determine the percentage of variation in CO~2~ between and within countries, controlling for time [@hoffman2015, p. 162]. $R^2$ values are calculated, when appropriate, to assess the explantory power of some of the models. Interactions are probed based on estimated marginal means using the `ggeffects` R package [@ludecke2018].
 
-A conditional growth model with time-varying and time-invariant predictors will directly address the first two research questions. This model will help determine 1) the relationship between scientific literacy and CO~2~ emissions per capita, controlling for other factors; and 2) whether this relationship varies for developed and less-developed countries, which will be assessed using the OECD variable. This model, which includes a set of time-varying statistical controls, *X*, will be specified as follows:
+The goal of the model-building process is to arrive at a well-fitting conditional growth model with time-varying and time-invariant predictors that directly address the first two research questions. This model estimates 1) the relationship between scientific literacy and CO~2~ emissions per capita, controlling for other factors; and 2) whether this relationship varies for developed and less-developed countries, which is assessed using an interaction effect between OECD and scientific literacy. This model, which includes a set of time-varying statistical controls, *X*, is initially specified as follows:
 
 :::{custom-style="Equation Area"}
 **Level 1**: $CO_2 = \beta_{0i} + \beta_{1i}(TIME)+\beta_{2i}(SL_{within})+e_{ti}$
 
-**Level 2**: $\beta_{0i} = \gamma_{00} + \gamma_{01}(SL_{between})+\gamma_{02}(OECD)+\gamma_{3...n}(X)+U_{0i}$
-$\beta_{1i}=\gamma_{10} + U_{1i}$
-$beta_{2i}=\gamma_{20}+U_{2i}$
+**Level 2**: $\beta_{0i} = \gamma_{00} + \gamma_{01}(SL_{between})+\gamma_{02}(OECD)+\gamma_{03}(OECD\times SL_{within})+\gamma_{4...n}(X)+U_{0i}$
 
-**Composite**: $CO_2 = \gamma_{00}+\gamma_{10}(TIME)+\gamma_{20}(SL_{within}) + \gamma_{01}(SL_{between})+\gamma_{02}(OECD)+\gamma_{3...n}(X)+e_{ti}+U_{0i}+U_{1i}+U_{2i}$.
-:::
+$\beta_{1i}=\gamma_{10} + U_{1i}(TIME)$
 
+$\beta_{2i}=\gamma_{20}+U_{2i}(SL_{within})$
 
-To address research question three regarding the effects of gender, two additional models (a male model and a female model) will be estimated with gender-specific scientific literacy scores rather than overall country scores. These will specified using the same equations above. A formal *Z*-test for the equality of regression coefficients will be conducted to assess if there are any differential effects between male and female scientific literacy scores on CO~2~ per capita holding all other variables constant [@clogg1995; @piquero2016]. The *Z*-test will be specified as follows:
-
-
-:::{custom-style="Equation"}
-$Z = \frac{\beta_{slf}-\beta_{slm}}{\sqrt{SE\beta_{slf}-SE\beta_{slm}}}$,
+**Composite**: $CO_2 = \gamma_{00}+\gamma_{10}(TIME)+\gamma_{20}(SL_{within}) + \gamma_{01}(SL_{between})+\gamma_{02}(OECD)+\gamma_{03}(OECD \times SL_{within})+\gamma_{4...n}(X)+e_{ti}+U_{0i}+U_{1i}(TIME)+U_{2i}(SL_{within})$.
 :::
 
 :::{custom-style="Body Text 2"}
-where $\beta$ refers to the regression coefficient for female (*slf*) or male (*slm*) scientific literacy), and $SE\beta$ refers to regression standard errors. This *Z*-test is based on recommendations in @piquero2016 (equation 4).
+Chapter 4 details the model building process and changes to the above model, as well as model results.
+:::
+
+
+To address research question three regarding the effects of gender, two additional models (a male model and a female model) are estimated with gender-specific scientific literacy scores rather than overall country scores. These are based on the final models from the model building process. A formal *Z*-test for the equality of regression coefficients will be conducted to assess if there are any differential effects between male and female scientific literacy scores on CO~2~ per capita holding all other variables constant [@clogg1995; @piquero2016]. The *Z*-test will be specified as follows:
+
+
+:::{custom-style="Equation"}
+$Z = \frac{\beta_{slf}-\beta_{slm}}{\sqrt{SE\beta_{slf}^2-SE\beta_{slm}^2}}$,
+:::
+
+:::{custom-style="Body Text 2"}
+where $\beta$ refers to the regression coefficient for female (*slf*) or male (*slm*) scientific literacy), and $SE\beta$ refers to regression standard errors. This *Z*-test is based on recommendations in Piquero et al. (2016; equation 4).
 :::
 
 
 
 
 
-@furr2014; @desjardins2018
+@furr2014; @desjardins2018 @aloisi2017 @jerrim2017 @andrew2021 @campbell2021
+@caro2017 @duprel2009 @friedlingstein2021 @lam2021 @loy2014 @meng1992 @nces 
+@oecd2009a @oecd2015 @pustejovsky2017 @rowley2019a @grimm2017
 
 `r officer::run_pagebreak()`

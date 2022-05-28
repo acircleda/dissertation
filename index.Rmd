@@ -1,17 +1,191 @@
----
-title: "A Book"
-author: "Frida Gomam"
+--- 
+title: "Science Education to the Rescue? Assessing The Relationship Between Scientific Literacy and Carbon Emissions"
 site: bookdown::bookdown_site
 documentclass: book
 output:
-  bookdown::gitbook: default
-  #bookdown::pdf_book: default
+  officedown::rdocx_document:
+     base_format: "bookdown::word_document2"
+     reference_docx: template.docx
+     pandoc_args: [ "--csl", "apa.csl"]
+     number_sections: false
+     fig_width: 6.5
+     fig_height: 4.33
+     page_margins:
+      bottom: 1
+      top: 1
+      right: 1
+      left: 1
+      header: 0.5
+      footer: 0.5
+      gutter: 0
+bibliography: references.bib
+biblio-style: apalike
+link-citations: yes
+description: "My dissertation!"
+#bookdown::render_book("index.Rmd")
+# manual formatting to-dos:
+  # 1. figure and table TOC
+  # 2. page numbers
+  # 3. footers
+  # move pages/figures to next page
+  # 4. bold figure / number text
+  # 5. image and table caption styles and spacing
 ---
 
-# Hello World
 
-Hi.
 
-Bye.
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(knitr)
+library(tidyverse)
+library(officedown)
+library(officer)
+library(flextable)
+library(ftExtra)
+library(finalfit)
+library(RColorBrewer)
+load("data/final data/final_data.Rdata")
+load("models/model_data.Rdata")
+load("data/final data/table_figure_data.Rdata")
+load("data/final data/efa_tables.Rdata")
+load("models/gr_table.Rdata")
 
-<!-- If you need PDF output, uncomment bookdown::pdf_book above in YAML. You will need a LaTeX installation, e.g., https://yihui.name/tinytex/ -->
+#update bib
+citr::tidy_bib_file(
+  rmd_file = c("index.Rmd", "03-introduction.Rmd", "04-lit-review.Rmd", "05-methods.Rmd", "06-results.Rmd", "07-conclusion.Rmd", "09-appendix.Rmd"),
+  messy_bibliography = "Dissertation_better_bibtex.bib", #updated by Zotero
+  file = "references.bib", #read in by R
+  encoding = "UTF-8"
+)
+
+
+knitr::opts_chunk$set(echo = FALSE, 
+               #tab.lp="Table", 
+               fig.lp="Figure",
+               tab.topcaption = TRUE,
+               #fig.topcaption = TRUE,
+               message=F,
+               warning=F)
+
+titlepage <- fp_text(color = 'black', bold = TRUE, font.size = 14,
+                     font.family = "Times New Roman")
+
+flex <- function(data, title=NULL) {
+  flextable(data) %>%
+  set_table_properties(layout = "autofit", width = 1) %>%
+  fontsize(size=10, part="all")
+}
+
+```
+
+```{r}
+block_section(prop_section(type = "continuous"))
+```
+
+`r officer::run_linebreak()`
+
+`r officer::run_linebreak()`
+
+`r officer::run_linebreak()`
+
+`r officer::run_linebreak()`
+
+
+`r ftext('A Dissertation Presented for the', titlepage)`
+`r fp_par(text.align = "center", line_spacing = 1)`
+
+`r ftext('Doctor of Philosophy', titlepage)`
+`r fp_par(text.align = "center")`
+
+`r ftext('Degree', titlepage)`
+`r fp_par(text.align = "center")`
+
+`r ftext('The University of Tennessee, Knoxville', titlepage)`
+`r fp_par(text.align = "center")`
+
+`r officer::run_linebreak()`
+
+`r officer::run_linebreak()`
+
+`r officer::run_linebreak()`
+
+
+
+`r ftext('Anthony Schmidt', titlepage)``r fp_par(text.align = "center")`
+
+`r ftext('June, 2022', titlepage)``r fp_par(text.align = "center")`
+
+`r officer::run_pagebreak()`
+
+
+`r ftext('DEDICATION', titlepage)`
+`r fp_par(text.align = "center")`
+
+This work is dedicated to my wife, Arysteja, and my children, Molly and Lilly.
+
+`r officer::run_pagebreak()`
+
+
+
+`r ftext('TIMELINE', titlepage)`
+`r fp_par(text.align = "center")`
+
+`r officer::run_linebreak()`
+
+`r officer::run_linebreak()`
+
+
+```{r timeline, fig.width=8, fig.height=5}
+# hadcrut <- read_csv("data/HadCRUT.5.0.1.0.analysis.summary_series.global.annual.csv") %>%
+#   janitor::clean_names()
+# 
+# timelines <- hadcrut %>%
+#   filter(time != 2022) %>%
+#   ggplot(aes(x=time, y=anomaly_deg_c, fill=anomaly_deg_c))+
+#   geom_col()+
+#   annotate(geom="text", x=1850, y=0, label="1850  ", hjust=1)+
+#   annotate(geom="text", x=2021, y=0, label="  2021", hjust=0)+
+#   geom_linerange(x=1983, ymin=-.05, ymax=1)+
+#   annotate(geom="text", x=1983, y=.9, label="Author \nBorn ", hjust=1)+
+#   geom_linerange(x=2021, ymin=-.05, ymax=1)+
+#   annotate(geom="text", x=2022, y=.9, label=" Dissertation\n Started", hjust=0)+
+#   scale_fill_gradientn(colors=rev(brewer.pal(11, "RdBu")), limits=c(-.75,1))+
+#   scale_x_continuous(limits=c(1845,2050))+
+#   theme_void()+
+#   theme(legend.position = "none")+
+#   coord_cartesian(clip="off")+
+#   ggtitle("Timeline of dissertation with\nglobal temperature change over time")
+# 
+# ggsave(file="figures/timeline.jpg", plot=last_plot(),
+#        width=8, height=5)
+
+knitr::include_graphics("figures/timeline.jpg")
+```
+Data Source: @hadcrut2021
+
+
+`r fp_par(text.align = "center", line_spacing = 1)`
+
+
+`r officer::run_pagebreak()`
+
+
+
+`r ftext('ACKNOWLEDGEMENTS', titlepage)``r fp_par(text.align = "center")`
+
+Thank you all for your help. However, this page is optional.
+
+`r officer::run_pagebreak()`
+
+
+
+`r ftext('ABSTRACT', titlepage)``r fp_par(text.align = "center")`
+
+Human activities have radically changed the climate, negatively impacting all life on earth. The technical means to address this climate crisis exist, but there are major social and political hurdles that stand in the way. Education has been touted as one possible means for helping to move forward necessary action on climate change. A hybrid model of planned behavior and human capital helps explain how education can affect climate change. The current dissertation sought to assess what relationship may exist between changes in per capita carbon emissions and science education as measured by the Programme for International Student Achievement (PISA). 
+
+Results from multilevel growth models showed that countries with higher scientific literacy scores are significantly associated with higher CO~2~ per capita, though this is likely driven by economics and not directly by education. There were no significant relationships between changes in scientific literacy within a country and changes in that country's emissions. This suggests evidence for the effect of science education is undetermined.
+  
+Based on this research, it is suggested that shifts in educational policies and practices that emphasizes and integrates science and climate change education across the curricula may have a greater effect on emissions. In addition, science and climate education should be imbued with a focus on effective climate change actions that can foster the individual and systemic changes needed to avert a global catastrophe.
+
+`r officer::run_pagebreak()`
+
+
